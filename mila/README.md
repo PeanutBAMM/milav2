@@ -12,6 +12,7 @@ Een React Native shopping list app voor families met expense tracking, gebouwd m
 - **Backend**: Supabase (PostgreSQL + Auth + Realtime)
 - **State Management**: Zustand + React Query (TODO)
 - **CI/CD**: ✅ GitHub Actions (automatic checks on every push)
+- **Branch Strategy**: Feature branches with PR workflow
 
 ## Ontwikkeling
 
@@ -45,6 +46,22 @@ Een React Native shopping list app voor families met expense tracking, gebouwd m
 - `npm run android` - Run op Android emulator
 - `npm run typecheck` - TypeScript type checking
 - `npm run lint` - ESLint checking
+- `npm run push` - Git push met automatische CI monitoring
+- `npm run ci:status` - Check laatste CI runs
+
+### Development Workflow
+
+1. **Feature Development**:
+   ```bash
+   git checkout -b feature/feature-name
+   # Make changes
+   git push -u origin feature/feature-name
+   gh pr create
+   ```
+
+2. **CI Monitoring**:
+   - Gebruik `npm run push` voor automatische CI monitoring
+   - PR's krijgen automatisch quality checks
 
 ### Development Builds
 
