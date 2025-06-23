@@ -1,0 +1,37 @@
+name: CI Checks
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: mila/package-lock.json
+    
+    - name: Install dependencies
+      run: npm ci
+      working-directory: mila
+    
+    - name: TypeScript Check
+      run: npm run typecheck
+      working-directory: mila
+    
+    - name: ESLint Check
+      run: npm run lint
+      working-directory: mila
+    
+    - name: Expo Doctor
+      run: npx expo-doctor
+      working-directory: mila
