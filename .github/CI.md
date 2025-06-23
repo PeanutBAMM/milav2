@@ -5,6 +5,9 @@ Every push and PR automatically checks:
 - ✅ TypeScript compiles without errors
 - ✅ ESLint passes (code quality)
 - ✅ Expo compatibility (expo-doctor)
+- ✅ Exact versions only (no ^ or ~)
+- ✅ No console.log in production code
+- ✅ Security vulnerabilities scan
 
 ## How it works
 - Push code → GitHub runs checks → Green ✅ or Red ❌
