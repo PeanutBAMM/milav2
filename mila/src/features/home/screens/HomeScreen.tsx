@@ -55,8 +55,6 @@ export default function HomeScreen() {
         <Text className="text-3xl font-bold text-bolt-black mb-2">
           Welkom {user?.user_metadata?.full_name || 'daar'}! 🛒
         </Text>
-        {/* Test: TypeScript error */}
-        {console.log("Test CI failure detection")}
 
         {families.length === 0 ? (
           <View className="mt-10">
