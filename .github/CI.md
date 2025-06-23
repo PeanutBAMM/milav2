@@ -8,6 +8,7 @@ Every push and PR automatically checks:
 - ✅ Exact versions only (no ^ or ~)
 - ✅ No console.log in production code
 - ✅ Security vulnerabilities scan
+- ✅ Tech Stack Compliance (validates against tech-stack-research.md)
 
 ## How it works
 - Push code → GitHub runs checks → Green ✅ or Red ❌

@@ -12,7 +12,8 @@
     "lint": "eslint .",
     "prepare": "husky",
     "verify-versions": "node -e \"const pkg=require('./package.json');const invalid=[...Object.entries(pkg.dependencies||{}),...Object.entries(pkg.devDependencies||{})].filter(([,v])=>v.includes('^')||v.includes('~'));if(invalid.length){console.error('ERROR: Found version ranges:',invalid.map(([k,v])=>k+':'+v));process.exit(1);}else{console.log('✓ All versions are exact');}\"",
-    "organize-docs": "node docs/scripts/organize-docs.js"
+    "organize-docs": "node docs/scripts/organize-docs.js",
+    "check-compliance": "node scripts/check-tech-stack-compliance.js"
   },
   "dependencies": {
     "@expo/vector-icons": "14.0.3",

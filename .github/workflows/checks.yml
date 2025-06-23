@@ -54,3 +54,7 @@ jobs:
       run: npm audit --audit-level=high
       working-directory: mila
       continue-on-error: true
+    
+    - name: Tech Stack Compliance Check
+      run: npm run check-compliance
+      working-directory: mila
