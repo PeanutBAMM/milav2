@@ -53,7 +53,7 @@ export default function HomeScreen() {
     >
       <View className="px-5 pt-5">
         <Text className="text-3xl font-bold text-bolt-black mb-2">
-          Welkom {user?.user_metadata?.full_name || 'daar'}!
+          Welkom {user?.user_metadata?.full_name || 'daar'}! 🛒
         </Text>
 
         {families.length === 0 ? (
