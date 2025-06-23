@@ -1,0 +1,70 @@
+name: EAS Update Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Update message'
+        required: false
+        default: 'Production update'
+
+jobs:
+  update:
+    name: Deploy Production Update
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: 🔧 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: 📥 Install dependencies
+        run: npm ci
+        
+      - name: 🧪 Run tests
+        run: |
+          npm run typecheck
+          npm run lint
+          npx expo-doctor
+        
+      - name: 🔐 Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+          
+      - name: 🚀 Deploy update to production
+        run: |
+          MESSAGE="${{ github.event.inputs.message || github.event.head_commit.message }}"
+          eas update --branch production --message "$MESSAGE"
+          
+      - name: 📊 Create deployment record
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const deployment = await github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.sha,
+              task: 'deploy',
+              auto_merge: false,
+              required_contexts: [],
+              environment: 'production',
+              description: 'EAS Update to production'
+            });
+            
+            await github.rest.repos.createDeploymentStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              deployment_id: deployment.data.id,
+              state: 'success',
+              target_url: `https://expo.dev/@${context.repo.owner}/${context.repo.repo}`,
+              description: 'Deployment successful'
+            });

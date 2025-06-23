@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "Mila",
+    "slug": "mila",
+    "owner": "peanutbamm",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.peanutbamm.mila"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.peanutbamm.mila"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": ["expo-secure-store"],
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/6f25c1ba-7393-4622-af14-ebd92e0968ac"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6f25c1ba-7393-4622-af14-ebd92e0968ac"
+      }
+    }
+  }
+}

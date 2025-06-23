@@ -12,13 +12,13 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
+      with:
+        submodules: false
     
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
-        cache-dependency-path: mila/package-lock.json
     
     - name: Install dependencies
       run: npm ci
