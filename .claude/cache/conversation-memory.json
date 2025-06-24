@@ -1,0 +1,31 @@
+[
+  {
+    "timestamp": "2025-06-24T21:25:16.046Z",
+    "summary": "Implemented local RAG system with Supabase backup. User wanted docs completely private (not on GitHub) due to sensitive ML/AI info. Created SimpleDocsRAG with <10ms search, XML tag support, and conversation memory. Fixed XML validation in docs. Calculated 589 hours/year savings. Organization: Apex Minds AI.",
+    "keyTopics": [
+      "Local RAG implementation (<10ms search)",
+      "Private documentation (not on GitHub)",
+      "Supabase backup on PR",
+      "XML validation fixes",
+      "Performance: 589 hours/year saved",
+      "Organization: Apex Minds AI",
+      "CI/CD exclusions for docs/scripts",
+      "Conversation memory (FIFO, last 3)"
+    ],
+    "filesModified": [
+      ".claude/simple-rag.js",
+      ".claude/test-conversation-memory.js",
+      ".claude/search-docs.sh",
+      "scripts/backup-docs-to-supabase.js",
+      ".github/workflows/pr-docs-backup.yml",
+      ".github/ci-exclude.yml"
+    ],
+    "nextSteps": [
+      "Integrate Supabase credentials",
+      "Add RAG to Claude startup",
+      "Remove biometric auth feature",
+      "Document RAG usage for team",
+      "Test conversation restart"
+    ]
+  }
+]

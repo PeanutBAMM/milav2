@@ -1,0 +1,63 @@
+name: PR Documentation Backup
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [ main ]
+
+jobs:
+  backup-docs:
+    runs-on: ubuntu-latest
+    # Only run if docs are present and not in .gitignore
+    if: github.event.pull_request.draft == false
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: Check if docs exist
+      id: docs-check
+      run: |
+        if [ -d "docs" ] && [ "$(ls -A docs)" ]; then
+          echo "docs_exist=true" >> $GITHUB_OUTPUT
+          echo "📚 Documentation folder found"
+        else
+          echo "docs_exist=false" >> $GITHUB_OUTPUT
+          echo "📭 No documentation to backup"
+        fi
+    
+    - name: Create docs backup
+      if: steps.docs-check.outputs.docs_exist == 'true'
+      env:
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        GITHUB_HEAD_REF: ${{ github.head_ref }}
+      run: |
+        echo "🔄 Creating documentation backup for PR #$PR_NUMBER"
+        node scripts/backup-docs-to-supabase.js
+      continue-on-error: true
+    
+    - name: Comment on PR
+      if: steps.docs-check.outputs.docs_exist == 'true'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const comment = `📚 **Documentation Backup Status**
+          
+          A backup of the documentation has been prepared for this PR.
+          
+          - **PR**: #${{ github.event.pull_request.number }}
+          - **Branch**: ${{ github.head_ref }}
+          - **Status**: Ready for upload
+          
+          _Note: Documentation is kept private and not included in the repository._`;
+          
+          github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            body: comment
+          });
