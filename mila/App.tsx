@@ -14,9 +14,9 @@ if (typeof process !== 'undefined' && process.setMaxListeners) {
 
 // Alternative method for environments where process is not available
 if (typeof global !== 'undefined' && global.EventTarget) {
-  const EventTargetPrototype = global.EventTarget.prototype;
+  const EventTargetPrototype = global.EventTarget.prototype as any;
   const originalAddEventListener = EventTargetPrototype.addEventListener;
-  EventTargetPrototype.addEventListener = function(type, listener, options) {
+  EventTargetPrototype.addEventListener = function(this: any, type: string, listener: any, options: any) {
     if (this.setMaxListeners && type === 'abort') {
       this.setMaxListeners(20);
     }
