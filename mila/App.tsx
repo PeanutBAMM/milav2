@@ -13,12 +13,18 @@ if (typeof process !== 'undefined' && process.setMaxListeners) {
 }
 
 // Alternative method for environments where process is not available
-if (typeof global !== 'undefined' && global.EventTarget) {
-  const EventTargetPrototype = global.EventTarget.prototype as any;
+// Note: This is a polyfill for MaxListeners in environments without Node.js process
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+if (typeof global !== 'undefined' && (global as any).EventTarget) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const EventTargetPrototype = (global as any).EventTarget.prototype;
   const originalAddEventListener = EventTargetPrototype.addEventListener;
-  EventTargetPrototype.addEventListener = function(this: any, type: string, listener: any, options: any) {
-    if (this.setMaxListeners && type === 'abort') {
-      this.setMaxListeners(20);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  EventTargetPrototype.addEventListener = function(this: any, type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if ((this as any).setMaxListeners && type === 'abort') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (this as any).setMaxListeners(20);
     }
     return originalAddEventListener.call(this, type, listener, options);
   };
