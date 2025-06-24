@@ -109,6 +109,7 @@ Each project has its own scripts in `{project}/scripts/`:
 | [Mila](./mila/CLAUDE.md) | React Native (Expo) | Active | [Mila Docs](./docs/projects/mila/README.md) |
 | Project2 | TBD | Planning | Coming soon |
 
+<quick-reference>
 ## Quick Reference
 
 ### Most Used Commands
@@ -143,4 +144,5 @@ Loaded context:
 
 ---
 
-Remember: **Stability > Features**. A working app with 3 features is better than a crashing app with 10 features.
+Remember: **Stability > Features**. A working app with 3 features is better than a crashing app </quick-reference>
+with 10 features.

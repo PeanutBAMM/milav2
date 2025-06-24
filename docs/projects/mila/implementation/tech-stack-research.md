@@ -17,8 +17,8 @@ Na uitgebreid onderzoek zijn dit de aanbevelingen voor een stabiele, production-
 - **Development**: expo-dev-client voor development builds
 </executive-summary>
 
-<expo-analysis>
-<why-sdk-51>
+## Expo Analysis
+
 ### Waarom Expo SDK 51?
 - **Released**: Mei 2024 (1+ jaar production-tested)
 - **React Native**: 0.74 (stabiel en mature)
@@ -46,7 +46,6 @@ Na uitgebreid onderzoek zijn dit de aanbevelingen voor een stabiele, production-
   "@types/react": "~18.2.79"
 }
 ```
-</expo-analysis>
 
 <backend-comparison>
 This section covers backend comparison.
@@ -186,7 +185,6 @@ class StorageManager {
 ```
 </4-storage-strategy>
 
-<dependencies>
 ### Core Dependencies
 ```json
 {
@@ -276,7 +274,6 @@ npx expo run:android
   }
 }
 ```
-</dependencies>
 
 <architecture>
 This section covers architecture.

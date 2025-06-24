@@ -63,7 +63,6 @@ eas build            # Cloud builds
 ```
 </commands>
 
-<status>
 ### Completed ✅
 - Project setup with Expo SDK 51
 - Navigation structure
@@ -81,7 +80,6 @@ eas build            # Cloud builds
 - Real-time sync
 - Expense tracking
 - Performance optimization
-</status>
 
 ---
 

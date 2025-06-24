@@ -1,7 +1,6 @@
 # Project Plan: Mila - Family Shopping List & Budget Tracker
 
 
-<project-overview>
 ### Doel van de app
 Een stabiele, gebruiksvriendelijke React Native shopping list app waarmee families gezamenlijk boodschappenlijsten kunnen beheren, uitgaven kunnen tracken, en hun huishouden kunnen organiseren. Focus op betrouwbaarheid, real-time synchronisatie en eenvoudig budgetbeheer.
 
@@ -33,7 +32,6 @@ Een stabiele, gebruiksvriendelijke React Native shopping list app waarmee famili
 - Incrementele development met continue verificatie
 - Error prevention boven error handling
 - Platform parity vanaf dag 1
-</project-overview>
 
 <checkpoints>
 This section covers checkpoints.
@@ -177,7 +175,6 @@ This section covers checkpoints.
 - Beta user feedback integration
 </checkpoints>
 
-<agent-instructions>
 ### 1. Stability Researcher
 **Doel**: Identificeer de meest stabiele versie combinaties voor alle dependencies
 
@@ -281,7 +278,6 @@ src/
 - Optimization techniques
 - Platform-specific tips
 - Testing procedures
-</agent-instructions>
 
 <development>
 This section covers development.

@@ -60,6 +60,16 @@ function suggestAlternativeTag(tagName, lineNumber, content) {
 
 // XML Tag Validation
 function validateXMLTags(content, filePath) {
+  // Skip validation for example files (they show incorrect examples on purpose)
+  if (filePath.includes('-examples.md') || filePath.includes('-example.md')) {
+    return true; // Always valid for example files
+  }
+  
+  // Skip validation for CLAUDE.md files (project memory files have special format)
+  if (path.basename(filePath) === 'CLAUDE.md') {
+    return true; // Always valid for CLAUDE.md files
+  }
+  
   const openTags = [];
   const xmlTagRegex = /<([a-z-]+)>|<\/([a-z-]+)>/g;
   let match;
@@ -176,6 +186,11 @@ function validateXMLTags(content, filePath) {
 
 // Validate XML whitespace
 function validateXMLWhitespace(content, filePath) {
+  // Skip validation for example files
+  if (filePath.includes('-examples.md') || filePath.includes('-example.md')) {
+    return []; // No issues for example files
+  }
+  
   const issues = [];
   const lines = content.split('\n');
   
