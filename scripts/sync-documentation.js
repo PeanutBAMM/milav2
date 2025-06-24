@@ -678,7 +678,7 @@ function updateProjectRegistry(projectName, projectInfo) {
 async function processFile(filePath) {
   const context = detectContext(filePath);
   
-  if (context.type === 'skip' || context.type === 'unknown') return;
+  if (context.type === 'skip' || context.type === 'unknown') return null;
   
   // Ensure project documentation structure exists
   if (context.type === 'project') {
@@ -687,11 +687,11 @@ async function processFile(filePath) {
   
   // Check if this file needs documentation
   const fileType = detectFileType(filePath);
-  if (!fileType) return;
+  if (!fileType) return null;
   
   // Generate documentation
   const doc = generateDocumentation(filePath, fileType, context);
-  if (!doc) return;
+  if (!doc) return null;
   
   // Determine output path
   let outputPath;
@@ -717,12 +717,15 @@ async function processFile(filePath) {
     // Validate XML tags before writing
     if (!validateXMLTags(doc.content, outputPath)) {
       console.error(`✗ Skipping ${outputPath} due to XML validation errors`);
-      return;
+      return null;
     }
     
     fs.writeFileSync(outputPath, doc.content);
     console.log(`✓ Generated: ${path.relative(APPS_ROOT, outputPath)}`);
+    return outputPath;
   }
+  
+  return null;
 }
 
 async function getChangedFiles(staged = false) {
@@ -737,6 +740,30 @@ async function getChangedFiles(staged = false) {
     // Fallback: process all files in current directory
     return [];
   }
+}
+
+// Get all code files in the project
+function getAllCodeFiles(dir, files = []) {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    
+    if (entry.isDirectory()) {
+      // Skip directories
+      if (['node_modules', '.git', 'docs', 'android', 'ios', 'build', 'dist', '.expo'].includes(entry.name)) continue;
+      getAllCodeFiles(fullPath, files);
+    } else if (entry.isFile()) {
+      // Include TypeScript, JavaScript, and other source files
+      const ext = path.extname(entry.name);
+      if (['.ts', '.tsx', '.js', '.jsx'].includes(ext)) {
+        // Get relative path from APPS_ROOT
+        files.push(path.relative(APPS_ROOT, fullPath));
+      }
+    }
+  }
+  
+  return files;
 }
 
 // Add XML tags to existing documentation
@@ -942,10 +969,43 @@ async function main() {
   const checkOnly = args.includes('--check');
   const staged = args.includes('--staged');
   const fixExisting = args.includes('--fix-existing');
+  const scanMode = args.includes('--scan');
+  const forceFix = args.includes('--force-fix');
+  const help = args.includes('--help') || args.includes('-h');
+  
+  if (help) {
+    console.log(`
+📚 Documentation Sync Tool
+
+Usage: node scripts/sync-documentation.js [options]
+
+Options:
+  --scan            Scan all code files and generate documentation
+  --staged          Process only staged files (for pre-commit hook)
+  --check <file>    Check a specific file for validation errors
+  --fix-existing    Fix XML issues in existing documentation
+  --force-fix       Force fix documentation (bypass validation)
+  --help, -h        Show this help message
+
+Examples:
+  # Generate docs for all code files
+  node scripts/sync-documentation.js --scan
+  
+  # Fix existing documentation
+  node scripts/sync-documentation.js --fix-existing
+  
+  # Force fix when validation blocks normal fix
+  node scripts/sync-documentation.js --force-fix
+  
+  # Check specific file
+  node scripts/sync-documentation.js --check docs/general/README.md
+`);
+    return;
+  }
   
   console.log('🔄 Syncing documentation...\n');
   
-  if (fixExisting) {
+  if (fixExisting || forceFix) {
     console.log('📝 Fixing existing documentation files...\n');
     
     // Get all markdown files in docs directory
@@ -972,7 +1032,18 @@ async function main() {
     
     let fixedCount = 0;
     for (const file of markdownFiles) {
-      if (fixExistingDocumentation(file)) {
+      if (forceFix) {
+        // Force fix mode: bypass validation
+        const content = fs.readFileSync(file, 'utf8');
+        let fixed = fixXMLWhitespace(content);
+        fixed = ensureClickableLinks(fixed, file);
+        
+        if (fixed !== content) {
+          fs.writeFileSync(file, fixed);
+          console.log(`✓ Force fixed: ${path.relative(APPS_ROOT, file)}`);
+          fixedCount++;
+        }
+      } else if (fixExistingDocumentation(file)) {
         fixedCount++;
       }
     }
@@ -981,23 +1052,135 @@ async function main() {
     return;
   }
   
-  // Get changed files or process specific paths
-  let files = await getChangedFiles(staged);
-  
-  if (files.length === 0 && !staged) {
-    console.log('No changed files detected. Use --staged for pre-commit hook.');
-    return;
-  }
-  
-  // Process each file
-  for (const file of files) {
-    const fullPath = path.join(APPS_ROOT, file);
-    if (fs.existsSync(fullPath) && fs.statSync(fullPath).isFile()) {
-      await processFile(fullPath);
+  // Get files to process
+  let files;
+  if (scanMode) {
+    console.log('📂 Scanning all code files...\n');
+    files = getAllCodeFiles(APPS_ROOT);
+    console.log(`Found ${files.length} code files to process.\n`);
+  } else {
+    files = await getChangedFiles(staged);
+    
+    if (files.length === 0 && !staged) {
+      console.log('No changed files detected. Use --staged for pre-commit hook or --scan for all files.');
+      return;
     }
   }
   
+  // Process each file
+  const generatedDocs = [];
+  for (const file of files) {
+    const fullPath = path.join(APPS_ROOT, file);
+    if (fs.existsSync(fullPath) && fs.statSync(fullPath).isFile()) {
+      const docPath = await processFile(fullPath);
+      if (docPath && scanMode) {
+        generatedDocs.push(docPath);
+      }
+    }
+  }
+  
+  // Update README indexes if in scan mode
+  if (scanMode && generatedDocs.length > 0) {
+    console.log('\n📋 Updating README indexes...');
+    await updateReadmeIndexes(generatedDocs);
+  }
+  
   console.log('\n✅ Documentation sync complete!');
+}
+
+// Update README indexes with new documentation files
+async function updateReadmeIndexes(generatedDocs) {
+  // Group docs by category
+  const docsByCategory = {};
+  
+  for (const docPath of generatedDocs) {
+    // Extract category from path
+    const relative = path.relative(DOCS_ROOT, docPath);
+    const parts = relative.split(path.sep);
+    
+    let category;
+    if (parts[0] === 'projects' && parts.length > 2) {
+      // Project-specific docs
+      category = path.join(DOCS_ROOT, 'projects', parts[1], parts[2]);
+    } else if (parts[0] === 'general' && parts.length > 1) {
+      // General docs
+      category = path.join(DOCS_ROOT, 'general', parts[1]);
+    } else {
+      continue;
+    }
+    
+    if (!docsByCategory[category]) {
+      docsByCategory[category] = [];
+    }
+    docsByCategory[category].push(docPath);
+  }
+  
+  // Update each category's README
+  for (const [categoryPath, docs] of Object.entries(docsByCategory)) {
+    const readmePath = path.join(categoryPath, 'README.md');
+    
+    if (!fs.existsSync(readmePath)) {
+      // Create new README if doesn't exist
+      const categoryName = path.basename(categoryPath);
+      const title = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
+      let content = `# ${title} Documentation\n\n<overview>\nDocumentation for ${title.toLowerCase()} related code.\n</overview>\n\n<files>\n`;
+      
+      // List existing docs in directory
+      const existingDocs = fs.readdirSync(categoryPath)
+        .filter(f => f.endsWith('.md') && f !== 'README.md')
+        .sort();
+      
+      for (const doc of existingDocs) {
+        const docContent = fs.readFileSync(path.join(categoryPath, doc), 'utf8');
+        const titleMatch = docContent.match(/^#\s+(.+)$/m);
+        const title = titleMatch ? titleMatch[1] : doc.replace('.md', '');
+        content += `- [${title}](./${doc})\n`;
+      }
+      
+      content += `</files>\n`;
+      fs.writeFileSync(readmePath, content);
+      console.log(`✓ Created category index: ${path.relative(APPS_ROOT, readmePath)}`);
+    } else {
+      // Update existing README
+      let content = fs.readFileSync(readmePath, 'utf8');
+      
+      // Find the files section
+      const filesMatch = content.match(/<files>([\s\S]*?)<\/files>/);
+      if (filesMatch) {
+        const currentFiles = filesMatch[1].trim().split('\n');
+        const newFiles = [];
+        
+        // Add new docs to list
+        for (const docPath of docs) {
+          const docName = path.basename(docPath);
+          const docContent = fs.readFileSync(docPath, 'utf8');
+          const titleMatch = docContent.match(/^#\s+(.+)$/m);
+          const title = titleMatch ? titleMatch[1] : docName.replace('.md', '');
+          const link = `- [${title}](./${docName})`;
+          
+          if (!currentFiles.some(line => line.includes(docName))) {
+            newFiles.push(link);
+          }
+        }
+        
+        if (newFiles.length > 0) {
+          // Merge and sort all files
+          const allFiles = [...currentFiles, ...newFiles]
+            .filter(line => line.trim())
+            .sort();
+          
+          // Update content
+          content = content.replace(
+            /<files>[\s\S]*?<\/files>/,
+            `<files>\n${allFiles.join('\n')}\n</files>`
+          );
+          
+          fs.writeFileSync(readmePath, content);
+          console.log(`✓ Updated category index: ${path.relative(APPS_ROOT, readmePath)}`);
+        }
+      }
+    }
+  }
 }
 
 // Run if called directly

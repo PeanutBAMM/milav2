@@ -304,8 +304,6 @@ This section covers design assets needed.
 </design-assets-needed>
 
 <figma-structure>
-## Figma/Design Tool Structure
-
 ```
 Mila Design System/
 ├── 🎨 Colors

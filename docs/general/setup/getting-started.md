@@ -26,8 +26,6 @@ Complete stap-voor-stap handleiding om de geautomatiseerde CI/CD pipeline op te 
 </quick-start>
 
 <new-developers>
-## 🚀 Voor Nieuwe Developers
-
 Start met deze volgorde:
 1. **Setup CI/CD** - Volg de [CI/CD Setup Guide](../ci-cd/ci-cd-setup-guide.md)
 2. **Clone & Install** - Clone het project en installeer dependencies

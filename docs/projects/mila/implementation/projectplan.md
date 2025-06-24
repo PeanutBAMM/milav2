@@ -2,9 +2,6 @@
 
 
 <project-overview>
-## A. Project Overzicht
-
-
 ### Doel van de app
 Een stabiele, gebruiksvriendelijke React Native shopping list app waarmee families gezamenlijk boodschappenlijsten kunnen beheren, uitgaven kunnen tracken, en hun huishouden kunnen organiseren. Focus op betrouwbaarheid, real-time synchronisatie en eenvoudig budgetbeheer.
 
@@ -181,9 +178,6 @@ This section covers checkpoints.
 </checkpoints>
 
 <agent-instructions>
-## C. Agent Instructies
-
-
 ### 1. Stability Researcher
 **Doel**: Identificeer de meest stabiele versie combinaties voor alle dependencies
 

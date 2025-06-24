@@ -2,9 +2,6 @@
 
 
 <current-status>
-## 🚀 Waar we zijn gebleven
-
-
 ### ✅ Wat is af:
 1. **CI/CD volledig werkend**
    - GitHub Actions draait op elke push/PR
@@ -96,7 +93,6 @@ Voor user memory:
 </performance>
 
 <next-focus>
-## 🎯 Focus voor morgen:
 1. Merge PR #1 (of laat open voor demo)
 2. Implementeer biometric auth met expo-local-authentication
 3. Test op beide platforms

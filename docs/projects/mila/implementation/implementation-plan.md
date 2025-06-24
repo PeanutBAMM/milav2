@@ -74,9 +74,6 @@ This section covers implementation.
 </implementation>
 
 <tech-decisions>
-## Key Technical Decisions
-
-
 <why-expo-sdk-51-not-52>
 ### Why Expo SDK 51 (not 52+)
 - SDK 52 has experimental features (React Server Components)

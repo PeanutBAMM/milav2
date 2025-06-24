@@ -1,12 +1,14 @@
 # Agent Usage Guidelines for Claude
 
-## Overview
+<overview>
 Agents zijn krachtige tools die Claude kan gebruiken om taken parallel uit te voeren. **BELANGRIJK**: Sinds 2024-06-24 gebruiken we een performance-first approach waarbij bash/grep commands de voorkeur hebben boven agents.
 
 ⚠️ **Performance Update**: Agents zijn 300-500x langzamer dan directe bash commands. Gebruik ze ALLEEN voor echt complexe parallelle taken.
 
 📚 **See also**: [System Info](./system-info.md) voor complete performance settings
+</overview>
 
+<quick-reference>
 ## Quick Reference Table
 
 | Task Type | Agent Suitable | Argument Example | Related Docs |
@@ -20,7 +22,9 @@ Agents zijn krachtige tools die Claude kan gebruiken om taken parallel uit te vo
 | Git Operations | ❌ No | `"Commit changes"` | [Git Workflow](./git-workflow.md) |
 
 📚 **For detailed argument syntax**: See [Agent Argument Reference](./agent-argument-reference.md)
+</quick-reference>
 
+<when-to-use>
 ## Wanneer Agents Gebruiken
 
 ### ✅ Ideaal voor Agents
@@ -59,7 +63,9 @@ Agent taak: Grep door hele codebase voor TODO/FIXME patterns
 3. **Git operations** - Kunnen conflicten veroorzaken
 4. **Database migrations** - Require careful sequencing
 5. **Build configurations** - Te complex voor parallel werk
+</when-to-use>
 
+<security-rules>
 ## Veiligheidsregels
 
 ### 1. Read-First Policy

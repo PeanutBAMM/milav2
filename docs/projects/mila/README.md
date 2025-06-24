@@ -3,7 +3,6 @@
 Family shopping list app with expense tracking built with React Native and Expo.
 
 <project-info>
-## Project Overview
 - **Type**: React Native (Expo SDK 51)
 - **Status**: Active Development
 - **Current Sprint**: Week 1 - Authentication
@@ -11,7 +10,6 @@ Family shopping list app with expense tracking built with React Native and Expo.
 </project-info>
 
 <quick-links>
-## Essential Links
 - [Project CLAUDE.md](../../../mila/CLAUDE.md) - Project-specific guidelines
 - [Project Plan](./implementation/projectplan.md) - Complete roadmap and milestones
 - [Tech Stack](./implementation/tech-stack-research.md) - Technology decisions
@@ -31,7 +29,6 @@ Family shopping list app with expense tracking built with React Native and Expo.
 </implementation>
 
 <features>
-## Feature Documentation
 Features will be documented as they are implemented.
 </features>
 
