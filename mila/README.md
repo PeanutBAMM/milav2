@@ -39,6 +39,12 @@ Een React Native shopping list app voor families met expense tracking, gebouwd m
    npm start
    ```
 
+### ⚠️ Security Note
+
+**Environment variables en secrets worden NIET in de codebase opgeslagen.** 
+- Voor lokale development: gebruik `.env.local` (in .gitignore)
+- Voor EAS builds: gebruik EAS Secrets (zie [EAS Secrets Setup Guide](./docs/05-ci-cd/eas-secrets-setup.md))
+
 ### Available Scripts
 
 - `npm start` - Start Expo development server
