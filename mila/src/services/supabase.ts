@@ -40,4 +40,20 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     persistSession: true,
     detectSessionInUrl: false,
   },
+  realtime: {
+    params: {
+      eventsPerSecond: 2,
+    },
+  },
+  global: {
+    headers: {
+      'X-Client-Info': 'mila-app',
+    },
+  },
 });
+
+// Fix for MaxListeners warning in React Native
+// This is needed because Supabase's auth and realtime features create multiple event listeners
+if (typeof global !== 'undefined' && global.process && typeof global.process.setMaxListeners === 'function') {
+  global.process.setMaxListeners(0); // 0 = unlimited
+}

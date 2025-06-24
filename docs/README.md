@@ -21,6 +21,12 @@ Reusable documentation that applies across all projects:
 - Tool installation
 - Initial configuration
 
+### [Troubleshooting & Common Fixes](./general/troubleshooting/)
+- React Native common issues
+- Supabase integration fixes
+- Performance optimizations
+- Build and deployment solutions
+
 ## 🚀 Project Documentation
 
 ### [Mila - Family Shopping List](./projects/mila/)

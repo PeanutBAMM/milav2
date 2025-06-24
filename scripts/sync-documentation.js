@@ -279,6 +279,43 @@ Features will be documented as they are implemented.
 **Navigation**: [Back to General](../../general/README.md) | [{name} Project](../../../{name}/)
 `
   },
+  troubleshooting: `# {category} Troubleshooting
+
+<overview>
+Common issues and solutions for {category}. These fixes have been tested across multiple projects.
+</overview>
+
+<issues>
+{issuesList}
+</issues>
+
+<contribution>
+### Contributing
+When adding new fixes, use this template:
+
+\`\`\`markdown
+<issue-descriptive-name>
+### Issue Title
+
+**Problem**: Description of the problem
+**Affected**: Which projects/environments
+**First seen**: Where encountered
+
+**Solution**:
+\`\`\`language
+// Code solution
+\`\`\`
+
+**Why it works**: Explanation
+</issue-descriptive-name>
+\`\`\`
+</contribution>
+
+---
+
+**Navigation**: [Back to Troubleshooting](./README.md) | [All Guides](../README.md)
+*Last updated: {date}*
+`,
   feature: `# Feature: {name}
 
 <overview>
