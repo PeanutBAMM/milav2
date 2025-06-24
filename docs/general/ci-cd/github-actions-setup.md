@@ -2,7 +2,10 @@
 
 This directory contains our automated workflows for continuous integration and deployment.
 
-## Workflows
+
+<workflow>
+This section covers workflow.
+
 
 ### 🔍 `pr-checks.yml`
 
@@ -28,11 +31,14 @@ Deploys to production on merge to main:
 - Runs all quality checks first
 - Deploys OTA update
 - Creates deployment record
+</workflow>
 
-## Setup Required
+<setup>
+This section covers setup.
 
 1. Add `EXPO_TOKEN` to repository secrets
 2. Ensure `eas.json` has correct channels
 3. Team members need development builds
 
 See `/docs/CI-CD-SETUP.md` for detailed setup instructions.
+</setup>

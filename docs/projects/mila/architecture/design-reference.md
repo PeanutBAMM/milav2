@@ -1,9 +1,13 @@
 # Design Reference: Bolt Food Style Guide
 
-## Design Inspiration
-We gebruiken **Bolt Food** als design reference voor de Mila shopping list app. Bolt Food staat bekend om zijn clean, minimalistisch design met focus op usability.
 
-## Core Design Principles (Bolt Food Style)
+<design-inspiration>
+We gebruiken **Bolt Food** als design reference voor de Mila shopping list app. Bolt Food staat bekend om zijn clean, minimalistisch design met focus op usability.
+</design-inspiration>
+
+<design-principles>
+This section covers design principles.
+
 
 ### 1. Color Palette
 ```scss
@@ -262,6 +266,7 @@ module.exports = {
 }
 ```
 
+<a11y>
 ### 9. Accessibility
 
 - Minimum touch target: 44x44px
@@ -269,6 +274,8 @@ module.exports = {
 - Clear focus indicators
 - Haptic feedback on actions
 - Screen reader labels
+
+</a11y>
 
 ### 10. Platform Differences
 
@@ -281,8 +288,10 @@ module.exports = {
 - Material ripple effects
 - Android back button support
 - Material-style FAB positioning
+</design-principles>
 
-## Design Assets Needed
+<design-assets-needed>
+This section covers design assets needed.
 
 1. **App Icon**: Minimalist shopping cart in Bolt green
 2. **Splash Screen**: White background with centered logo
@@ -292,9 +301,9 @@ module.exports = {
    - No search results
 4. **Category Icons**: Simple line icons for each category
 5. **Tab Bar Icons**: Home, Lists, Expenses, Profile
+</design-assets-needed>
 
-## Figma/Design Tool Structure
-
+<figma-structure>
 ```
 Mila Design System/
 ├── 🎨 Colors
@@ -314,8 +323,10 @@ Mila Design System/
 │   └── Profile
 └── 🎯 Prototypes
 ```
+</figma-structure>
 
-## References
+<references>
+This section covers references.
 
 - Bolt Food App (iOS/Android)
 - Study the navigation patterns
@@ -326,3 +337,4 @@ Mila Design System/
 ---
 
 Met deze design reference kunnen we consistent Bolt Food's clean design language toepassen in de Mila app.
+</references>

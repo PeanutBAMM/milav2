@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "find",
+      "cd",
+      "find docs"
+    ],
+    "deny": []
+  }
+}

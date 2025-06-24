@@ -1,6 +1,6 @@
 # EAS Secrets Setup Guide
 
-## Overview
+<overview>
 This guide explains how to configure environment variables and secrets for EAS Build without exposing them in your codebase.
 
 ## Setting up EAS Secrets
@@ -60,3 +60,4 @@ EAS Build will automatically inject the secrets during the build process. The ap
 - Verify `.env.local` exists and is not empty
 - Restart Metro bundler after changing env vars
 - Check that `.env.local` is in `.gitignore`
+</overview>

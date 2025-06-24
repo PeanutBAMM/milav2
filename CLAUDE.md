@@ -1,33 +1,70 @@
-# Mila Project - Development Guidelines & Memory
+# Claude Development Guidelines - Apps Workspace
 
-## Project Context
-Building a React Native family shopping list app with expense tracking. Focus on stability, real-time sync, and family collaboration.
+## Intelligent Layered Documentation System
+
+### Always Loaded (Base Layer)
+1. **This file**: Apps/CLAUDE.md - General workspace rules
+2. **General docs**: [docs/general/README.md](./docs/general/README.md) - Cross-project guidelines
+
+### Conditionally Loaded (Project Layer)
+When working in `/Apps/{project}/`:
+3. **Project CLAUDE.md**: {project}/CLAUDE.md - Project-specific rules
+4. **Project docs**: [docs/projects/{project}/README.md](./docs/projects/{project}/README.md) - Project documentation
+
+### Loading Priority
+```
+ALWAYS:
+├── Apps/CLAUDE.md (workspace config)
+├── docs/general/README.md (general guidelines)
+│
+IF in project directory:
+├── {project}/CLAUDE.md (project config)
+└── docs/projects/{project}/README.md (project docs)
+```
+
+### How Context Stacking Works
+- **General rules** apply to all projects (from Apps level)
+- **Project rules** override or extend general rules
+- **Conflicts**: Project-specific takes precedence
+- **Task matching**: Searches both general AND project docs
 
 ## Core Development Rules
 
+### 📝 Documentation Standards
+ALL documentation in this workspace must follow standards defined in:
+- [Documentation Standards](./docs/general/development/documentation-standards.md)
+
+**Key Requirements**:
+- XML section tags for all .md files
+- Clickable relative path links
+- Standard templates for consistency
+- Automatically enforced by sync-documentation.js
+
 ### 🛑 Stability-First Philosophy
-- **NO bleeding edge**: Alleen dependencies met proven track record
-- **Version locks**: Exact versions, geen ^ of ~ in package.json
-- **Test incrementeel**: Elke feature moet werken op beide platforms voor je verder gaat
-- **Error prevention**: Beter om features te skippen dan instabiliteit te introduceren
+- **NO bleeding edge**: Only dependencies with proven track record
+- **Version locks**: Exact versions, no ^ or ~ in package.json
+- **Test incrementally**: Each feature must work on both platforms
+- **Error prevention**: Better to skip features than introduce instability
 
-### 📱 Tech Stack
-See `tech-stack-research.md` for exact versions and rationale.
+### ⚡ Performance-First Approach
+Tool selection hierarchy (fastest to slowest):
+1. **Bash/Shell commands** (0.01s) - For counts, searches, checks
+2. **Direct file tools** (0.1s) - Read/Write/Edit for specific files
+3. **Agents** (3-5s) - ONLY for truly parallel complex tasks
 
-**Key rules:**
-- NO @latest tags - use exact versions only
-- Lock all dependencies with exact versions
-- Test every dependency on both platforms before adding
+**Max agents**: 2 concurrent (reduced from 3)
+**Default**: NO agents unless absolutely necessary
+See: [System Info](./docs/general/development/system-info.md) for detailed guidelines
 
-### 🔄 Development Workflow
+## Development Workflow
 
-#### Daily Checkpoint Protocol
-Start elke dag met deze checks:
+### Daily Checkpoint Protocol
+Start each day with these checks:
 ```bash
 # 1. Clean install test
 rm -rf node_modules && npm install
 
-# 2. Platform builds
+# 2. Platform builds (if applicable)
 npm run ios
 npm run android
 
@@ -38,255 +75,72 @@ npm run typecheck
 npm run lint
 ```
 
-#### Error Response Protocol
-Bij ELKE error:
-1. **STOP** - Geen nieuwe code tot error opgelost
-2. **Document** - In `troubleshooting.md`
-3. **Rollback** - Git reset naar laatste werkende staat
-4. **Research** - Root cause analysis
-5. **Fix** - Targeted oplossing
-6. **Verify** - Test alle features opnieuw
+### CI/CD Integration
+- **Always use**: `npm run push` (NOT regular git push)
+- **Automatic**: CI monitoring and failure analysis
+- **On failures**: Claude analyzes logs and proposes fixes
+- See: [Claude CI Workflow](./docs/general/ci-cd/claude-ci-workflow.md)
 
-### 📦 Dependency Management
+## Workspace Scripts
 
-#### Addition Checklist
-Voor ELKE nieuwe dependency:
-- [ ] Weekly downloads > 1,000?
-- [ ] Last breaking change > 6 months ago?
-- [ ] TypeScript types available?
-- [ ] Expo compatible verified?
-- [ ] Alternative packages considered?
-- [ ] Installed in isolation first?
-- [ ] Both platforms tested?
+### Available Commands
+- **organize-docs** - Auto-categorize markdown files
+  - Location: Project-specific (e.g., `docs/projects/mila/organize-mila-docs.js`)
+  - Runs on: Pre-commit hook
+  - Categories: Based on project needs
 
+### CI/CD Scripts
+- `ci-watch.sh` - Monitor CI after push
+  - Location: `scripts/ci-watch.sh`
+  - Usage: Automatic via `npm run push`
+  - Output: Success ✅ or error analysis
 
-#### Forbidden Packages
-- ❌ Alpha/Beta/RC versions
-- ❌ Packages with "experimental" in name
-- ❌ Dependencies requiring linking (pre-Expo SDK 49)
-- ❌ Packages with native code zonder Expo support
+### Project Scripts Pattern
+Each project has its own scripts in `{project}/scripts/`:
+- Pre-install checks
+- Tech stack compliance
+- Project-specific automation
 
-### 🏗️ Code Standards
+## Project Registry
 
-#### File Organization
-```
-src/features/[feature]/
-├── components/     # Feature-specific components
-├── screens/        # Screen components
-├── hooks/          # Custom hooks
-├── services/       # API calls
-├── types/          # TypeScript types
-└── utils/          # Helper functions
-```
+### Currently Active Projects
+| Project | Type | Status | Documentation |
+|---------|------|--------|---------------|
+| [Mila](./mila/CLAUDE.md) | React Native (Expo) | Active | [Mila Docs](./docs/projects/mila/README.md) |
+| Project2 | TBD | Planning | Coming soon |
 
-#### Naming Conventions
-- **Components**: PascalCase (UserProfile.tsx)
-- **Hooks**: camelCase with 'use' prefix (useAuth.ts)
-- **Utils**: camelCase (formatDate.ts)
-- **Types**: PascalCase with 'T' prefix (TUser.ts)
-- **Constants**: UPPER_SNAKE_CASE
+## Quick Reference
 
-#### Import Order
-```typescript
-// 1. React/React Native
-import React from 'react';
-import { View, Text } from 'react-native';
-
-// 2. Third-party libraries
-import { useQuery } from '@tanstack/react-query';
-
-// 3. Local imports
-import { Button } from '@/shared/components';
-import { useAuth } from '@/features/auth/hooks';
-
-// 4. Types
-import type { TUser } from '@/types';
-```
-
-### 🧪 Testing Requirements
-
-#### Before Committing
-- [ ] No TypeScript errors
-- [ ] No ESLint warnings
-- [ ] iOS simulator tested
-- [ ] Android emulator tested
-- [ ] Offline mode tested
-- [ ] No console warnings
-
-#### Feature Complete Definition
-Een feature is PAS complete als:
-1. Werkt op iOS zonder errors
-2. Werkt op Android zonder errors
-3. Offline scenario's afgehandeld
-4. Loading states zichtbaar
-5. Error states user-friendly
-6. Performance acceptable (<300ms interactions)
-
-### 🚫 Verboden Practices
-
-#### NEVER Do This
-- 🚫 `npm install <package>@latest`
-- 🚫 `npx create-expo-app@latest` (gebruik specifieke versie)
-- 🚫 Skip platform testing ("works on iOS so Android is fine")
-- 🚫 Ignore TypeScript errors ("// @ts-ignore")
-- 🚫 Direct state mutations
-- 🚫 Inline styles in components
-- 🚫 Console.log in production code
-- 🚫 Hardcoded API URLs
-- 🚫 Commit without testing offline mode
-
-#### Performance Anti-patterns
-- 🚫 Unnecessary re-renders (use React.memo)
-- 🚫 Large images without optimization
-- 🚫 Synchronous storage operations
-- 🚫 Unvirtualized long lists
-- 🚫 Memory leaks (cleanup useEffect)
-
-### 📝 Documentation Requirements
-
-#### Code Comments
-- Alleen voor complexe business logic
-- GEEN obvious comments ("// Set user name")
-- JSDoc voor publieke functions
-
-#### README Updates
-Update README.md wanneer:
-- Nieuwe setup stappen nodig
-- Environment variables toegevoegd
-- Major features completed
-
-### 🔍 Debugging Tools
-
-#### Reactotron Setup
-```javascript
-// Alleen in development
-if (__DEV__) {
-  import('./ReactotronConfig').then(() => 
-    console.log('Reactotron Configured')
-  );
-}
-```
-
-#### Flipper Integration
-- Network inspection
-- React DevTools
-- Layout inspector
-- Crash reporter
-
-### 🚀 Release Checklist
-
-#### Before Production
-- [ ] All features tested on real devices
-- [ ] Performance profiling completed
-- [ ] Memory leaks checked
-- [ ] Bundle size < 50MB
-- [ ] Crash-free rate > 99.9%
-- [ ] Offline mode fully functional
-- [ ] Security audit passed
-
-### 💡 Quick Reference
-
-#### Common Commands
+### Most Used Commands
 ```bash
-# Development
-npm start                    # Start Expo
-npm run ios                 # iOS simulator  
-npm run android             # Android emulator
-npm run typecheck           # TypeScript check
-npm run lint                # ESLint
-npm run test                # Jest tests
+# Push with CI monitoring
+npm run push
 
-# Development Builds (SDK 51)
-npx expo start --dev-client # Start with dev client
-npx expo run:ios           # Local iOS build
-npx expo run:android       # Local Android build
+# Organize documentation
+npm run organize-docs
 
-# Building
-eas build --profile development --platform all  # Dev builds
-eas build --platform ios    # iOS production
-eas build --platform android # Android production
+# Check project health
+npm run verify-versions
 
-# Debugging
-npx expo doctor            # Check setup
-npx react-native info      # System info
-adb logcat                 # Android logs
+# View CI status
+npm run ci:status
 ```
 
-#### Initial Project Setup
-See `tech-stack-research.md` section 5 for complete setup instructions.
+## Example Scenarios
 
-#### Troubleshooting Contacts
-- Expo: forums.expo.dev
-- React Native: github.com/react-native-community
-- Supabase: github.com/supabase/supabase/discussions
+### Working in `/Apps/mila/src/features/auth/`:
+Loaded context:
+1. ✅ Apps/CLAUDE.md (this file - general rules)
+2. ✅ docs/general/README.md (workflows, standards)
+3. ✅ mila/CLAUDE.md (project specifics)
+4. ✅ docs/projects/mila/README.md (mila documentation)
 
-## Project-Specific Notes
-
-### Current Sprint Focus
-- Week 1: Foundation & Authentication
-- Prioriteit: Stabiele auth flow voor family features
-
-### Design Guidelines
-- **Reference**: Bolt Food app design patterns
-- **Primary Color**: #34D186 (Bolt green)
-- **See**: `/design-reference.md` voor complete style guide
-- **Component Library**: Build reusable Bolt-style components
-
-### Known Issues
-- None yet (update as discovered)
-
-### Architecture Decisions
-- Zustand voor local state (simple, TypeScript friendly)
-- React Query voor server state (caching, sync)
-- Feature-based folders (scalability)
-- Supabase voor backend (real-time, auth, storage)
-- NativeWind v2 voor Tailwind-style styling
-- Development builds met expo-dev-client (vanaf start)
-- Geen MMKV (complexiteit vermijden)
-
-### Development Workflow Memories
-- **Standard Workflow**: 
-  - First think through the problem, read the codebase for relevant files, and write a plan to projectplan.md.
-  - The plan should have a list of todo items that you can check off as you complete them.
-  - Before you begin working, check in with me and I will verify the plan.
-  - Then, begin working on the todo items, marking them as complete as you go.
-  - Please every step of the way just give me a high level explanation of what changes you made.
-  - Make every task and code change you do as simple as possible. We want to avoid making any massive or complex changes. Every change should impact as little code as possible. Everything is about simplicity.
-  - Finally, add a review section to the todo.md file with a summary of the changes you made and any other relevant information.
-
-### CI/CD Setup
-
-**Simple CI enabled**: Every push runs TypeScript, ESLint, and Expo checks automatically.
-See `.github/CI.md` for details.
-
-### Documentation System
-
-#### Auto-Organization
-- **Script**: `docs/scripts/organize-docs.js`
-- **Command**: `npm run organize-docs`
-- **Hook**: Pre-commit automatically organizes .md files
-
-#### Structure
-```
-docs/
-├── 01-getting-started/     # Setup, installation
-├── 02-development/         # Workflow, standards
-├── 03-react-native/        # RN specific
-├── 04-expo-sdk/           # Expo specific
-├── 05-ci-cd/              # CI/CD, GitHub Actions
-├── 06-testing/            # Testing
-├── 07-architecture/       # Design patterns
-├── 08-deployment/         # Build, release
-├── 09-troubleshooting/    # Issues, fixes
-├── 10-project-management/ # Planning, progress
-└── scripts/               # Organization scripts
-```
-
-#### Categorization Rules
-- Filename-based matching has priority
-- Then content-based keyword matching
-- Default category: 02-development
+### Working in `/Apps/` root:
+Loaded context:
+1. ✅ Apps/CLAUDE.md (this file - general rules)
+2. ✅ docs/general/README.md (workflows, standards)
+3. ❌ No project-specific files loaded
 
 ---
 
-Remember: **Stability > Features**. Een werkende app met 3 features is beter dan een crashende app met 10 features.
+Remember: **Stability > Features**. A working app with 3 features is better than a crashing app with 10 features.

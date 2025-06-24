@@ -1,7 +1,7 @@
 # Project Plan: Mila - Family Shopping List & Budget Tracker
 
-## A. Project Overzicht
 
+<project-overview>
 ### Doel van de app
 Een stabiele, gebruiksvriendelijke React Native shopping list app waarmee families gezamenlijk boodschappenlijsten kunnen beheren, uitgaven kunnen tracken, en hun huishouden kunnen organiseren. Focus op betrouwbaarheid, real-time synchronisatie en eenvoudig budgetbeheer.
 
@@ -33,9 +33,13 @@ Een stabiele, gebruiksvriendelijke React Native shopping list app waarmee famili
 - Incrementele development met continue verificatie
 - Error prevention boven error handling
 - Platform parity vanaf dag 1
+</project-overview>
 
-## B. High-Level Checkpoints
+<checkpoints>
+This section covers checkpoints.
 
+
+<milestone-1>
 ### Milestone 1: Foundation & Authentication (Week 1)
 
 #### 1. Research fase
@@ -69,6 +73,8 @@ Een stabiele, gebruiksvriendelijke React Native shopping list app waarmee famili
 - Token refresh mechanisme
 - Deep linking voor password reset
 - Offline auth state persistence
+
+</milestone-1>
 
 ### Milestone 2: Core Features - Lists & Profiles (Week 2)
 
@@ -169,9 +175,9 @@ Een stabiele, gebruiksvriendelijke React Native shopping list app waarmee famili
 - Battery consumption test
 - Accessibility audit
 - Beta user feedback integration
+</checkpoints>
 
-## C. Agent Instructies
-
+<agent-instructions>
 ### 1. Stability Researcher
 **Doel**: Identificeer de meest stabiele versie combinaties voor alle dependencies
 
@@ -275,8 +281,11 @@ src/
 - Optimization techniques
 - Platform-specific tips
 - Testing procedures
+</agent-instructions>
 
-## Development Protocol
+<development>
+This section covers development.
+
 
 ### Week-by-Week Focus
 - **Week 1**: Foundation only - geen features tot auth werkt perfect
@@ -298,8 +307,10 @@ src/
 - [ ] Loading states smooth
 - [ ] Accessibility getest
 - [ ] Performance gemeten
+</development>
 
-## Database Schema
+<database-schema>
+This section covers database schema.
 
 ```sql
 -- Users & Authentication
@@ -404,8 +415,11 @@ CREATE TABLE sync_queue (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 ```
+</database-schema>
 
-## Success Metrics
+<success-metrics>
+This section covers success metrics.
+
 
 ### Technical Metrics
 - App startup time < 2 seconds
@@ -428,8 +442,11 @@ CREATE TABLE sync_queue (
 - Build time < 5 minutes
 - Deploy time < 30 minutes
 - Code review turnaround < 24 hours
+</success-metrics>
 
-## Risk Mitigation
+<risk-mitigation>
+This section covers risk mitigation.
+
 
 ### Technical Risks
 1. **Expo SDK version** 
@@ -460,8 +477,10 @@ CREATE TABLE sync_queue (
 3. **Schaalbaarbeid**
    - Mitigation: Load testing vanaf week 3
    - Architecture: Microservices-ready design
+</risk-mitigation>
 
-## Next Steps
+<next-steps>
+This section covers next steps.
 
 1. **Immediate Actions**:
    - Setup development environment
@@ -480,3 +499,4 @@ CREATE TABLE sync_queue (
    - Basic UI components library
    - Database schema implemented
    - Real device testing
+</next-steps>
