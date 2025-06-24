@@ -1,0 +1,22 @@
+# CI Exclude Configuration
+# This file documents what paths are excluded from CI checks
+
+excluded_paths:
+  # Documentation is kept private and not checked in CI
+  - docs/
+  - "*/docs/"
+  
+  # Scripts are utility files, not part of main codebase
+  - scripts/
+  - .claude/
+  
+  # Other exclusions
+  - "*.md"
+  - ".github/"
+  - "node_modules/"
+  - ".git/"
+
+# Rationale:
+# - Docs contain sensitive ML/AI information and are stored locally
+# - Scripts are development utilities, not production code
+# - .claude contains local RAG system
