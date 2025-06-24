@@ -2,14 +2,19 @@
 
 Continuous Integration and Deployment guides that can be used across all projects.
 
-## Available Guides
+
+<available-guides>
+This section covers available guides.
 
 - [CI/CD Setup Guide](./ci-cd-setup-guide.md) - Complete guide for setting up GitHub Actions
 - [CI Overview](./ci-overview.md) - Overview of CI checks and processes
 - [Claude CI Workflow](./claude-ci-workflow.md) - Automated CI monitoring with Claude
 - [GitHub Actions Setup](./github-actions-setup.md) - GitHub-specific CI/CD configuration
+</available-guides>
 
-## Key Concepts
+<key-concepts>
+This section covers key concepts.
+
 
 ### Automated Checks
 Every push and PR automatically runs:
@@ -27,3 +32,4 @@ Use `npm run push` to automatically monitor CI status after pushing changes.
 ---
 
 ← [Back to Documentation Hub](../../)
+</key-concepts>

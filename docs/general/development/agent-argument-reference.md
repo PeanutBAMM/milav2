@@ -1,6 +1,6 @@
 # Agent Argument Reference Guide
 
-## Overview
+<overview>
 Deze guide toont exact hoe agent taken geformuleerd moeten worden voor optimale resultaten.
 
 ## Argument Structure
@@ -29,7 +29,7 @@ Agent Task: "[ACTION] [TARGET] in [SCOPE]"
 "Count test files in features/"
 "Count files larger than 300 lines in components/"
 ```
-📚 **See**: [File Structure Guide](../07-architecture/file-structure.md)
+📚 **See**: [Architecture](../../projects/mila/architecture/)
 
 #### List Files
 ```typescript
@@ -64,7 +64,6 @@ Agent Task: "[ACTION] [TARGET] in [SCOPE]"
 "Search for console.log in src/"
 "Find TODO comments in features/"
 ```
-📚 **See**: [Code Standards](./code-standards.md)
 
 ### 3. Configuration Reads
 
@@ -83,9 +82,9 @@ Agent Task: "[ACTION] [TARGET] in [SCOPE]"
 "Show dependencies with 'react' in name"
 ```
 📚 **Related configs**:
-- [package.json](../../mila/package.json)
-- [tsconfig.json](../../mila/tsconfig.json)
-- [.eslintrc.js](../../mila/.eslintrc.js)
+- [package.json](../../../mila/package.json)
+- [tsconfig.json](../../../mila/tsconfig.json)
+- [.eslintrc.js](../../../mila/.eslintrc.js)
 
 ### 4. Directory Operations
 
@@ -242,3 +241,4 @@ Edit: Update each file individually
 ---
 
 💡 **Pro Tip**: When in doubt, make the task smaller and more specific. Agents work best with laser-focused objectives!
+</overview>

@@ -2,7 +2,9 @@
 
 Dit document bevat alle system-level configuraties en werkafspraken voor Claude sessies.
 
-## Performance & Efficiency Settings
+
+<performance>
+Configuratie voor optimale performance met focus op snelheid boven alles.
 
 ### 1. Tool Selection Hierarchy (Speed First)
 ```
@@ -40,8 +42,10 @@ Agent: "Count tsx files"
 Agent: "Find pattern"
 Agent: "Read package.json"
 ```
+</performance>
 
-## File Operation Rules
+<file-operation-rules>
+Regels voor veilige en efficiënte file operations zonder onnodige errors.
 
 ### Always Read Before Edit
 - Check of file bestaat met `test -f` of Read
@@ -52,8 +56,10 @@ Agent: "Read package.json"
 - Na elke code wijziging: `npm run push` (niet gewone git push)
 - Dit triggert automatische CI monitoring
 - Bij failures: Claude analyseert logs en stelt fixes voor
+</file-operation-rules>
 
-## Token & Resource Management
+<token-management>
+Resource management richtlijnen zonder limieten maar met focus op efficiency.
 
 ### No Limits Policy
 - Geen token spend limieten
@@ -64,8 +70,10 @@ Agent: "Read package.json"
 - Bash commands kunnen parallel met `&` 
 - Multiple tool calls in één message waar nuttig
 - Agents alleen voor ECHT parallelle complexe taken
+</token-management>
 
-## CI/CD Integration
+<ci-cd-integration>
+Integratie met CI/CD voor automatische monitoring en error fixing tijdens development.
 
 ### Automatic Monitoring
 ```bash
@@ -84,8 +92,10 @@ npm run push  # NIET git push
 - ESLint violations → Style fixes  
 - Console.log detection → Remove statements
 - Tech stack compliance → Version fixes
+</ci-cd-integration>
 
-## Development Workflow
+<development>
+Standard workflow voor efficiënte development met Claude.
 
 ### Standard Claude Workflow
 1. Read codebase eerst (begrip opdracht)
@@ -98,8 +108,10 @@ npm run push  # NIET git push
 - System changes → Update deze file
 - User-specific → Update ~/.claude/CLAUDE.md
 - Project-specific → Update project CLAUDE.md
+</development>
 
-## Quick Reference Commands
+<commands>
+Handige commands voor debugging en performance testing.
 
 ### Performance Testing
 ```bash
@@ -122,15 +134,19 @@ test -f filename && echo "exists" || echo "not found"
 # Quick grep with context
 grep -n -C 3 "pattern" file
 ```
+</commands>
 
-## Integration Points
+<integration-points>
+Connecties met andere documentatie voor diepere context.
 
 ### Links to Related Docs
-- [Agent Usage Guidelines](agent-usage-guidelines.md) - When agents ARE appropriate
-- [CI/CD Workflow](../claude-ci-workflow.md) - Automated CI monitoring
-- [Performance Tips](performance-optimization.md) - General optimization
+- [Agent Usage Guidelines](./agent-usage-guidelines.md) - When agents ARE appropriate
+- [CI/CD Workflow](../ci-cd/claude-ci-workflow.md) - Automated CI monitoring
+- [Git Workflow](./git-workflow.md) - Git best practices
+</integration-points>
 
-## Update History
+<update-history>
+Changelog van belangrijke wijzigingen in system configuratie.
 
 - **2024-06-24**: Initial creation, performance-first approach
 - **2024-06-24**: Added bash/grep preference over agents
@@ -139,3 +155,4 @@ grep -n -C 3 "pattern" file
 ---
 
 💡 **Golden Rule**: If it can be done with bash in <1 second, don't use an agent!
+</update-history>

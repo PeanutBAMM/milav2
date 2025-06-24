@@ -1,9 +1,11 @@
 # Claude CI Monitoring Workflow
 
-## Overview
+<overview>
 Een geautomatiseerd systeem waarbij Claude tijdens coding sessies automatisch CI failures detecteert, logs analyseert en fixes voorstelt.
+</overview>
 
-## How It Works
+<how-it-works>
+This section covers how it works.
 
 ### 1. Automatic Monitoring
 Bij elke push tijdens een Claude sessie:
@@ -28,8 +30,10 @@ Bij failures analyseert Claude:
 
 ### 4. Fix Proposals
 Claude stelt direct fixes voor en kan deze implementeren na goedkeuring.
+</how-it-works>
 
-## Available Commands
+<commands>
+This section covers commands.
 
 ```bash
 # In mila/ directory:
@@ -37,8 +41,10 @@ npm run push         # Push + auto monitor CI
 npm run ci:watch    # Monitor latest CI run
 npm run ci:status   # Show recent CI runs
 ```
+</commands>
 
-## Example Workflow
+<example-workflow>
+This section covers example workflow.
 
 1. **Claude maakt code wijziging**
 2. **Push met monitoring**:
@@ -52,16 +58,20 @@ npm run ci:status   # Show recent CI runs
 4. **Claude stelt fix voor**
 5. **Na goedkeuring**: Fix wordt toegepast
 6. **Nieuwe push**: Verifieert dat alles groen is
+</example-workflow>
 
-## Benefits
+<benefits>
+This section covers benefits.
 
 - ✅ Geen manual log checking nodig
 - ✅ Snellere feedback loop
 - ✅ Claude kan proactief fixes voorstellen
 - ✅ Minder context switches voor gebruiker
 - ✅ Betere code kwaliteit
+</benefits>
 
-## Testing
+<testing>
+This section covers testing.
 
 Test het systeem met:
 ```bash
@@ -71,9 +81,12 @@ echo "const x: string = 123;" > src/test-error.ts
 # Push en zie Claude reageren
 npm run push
 ```
+</testing>
 
-## Troubleshooting
+<troubleshooting>
+This section covers troubleshooting.
 
 - Script toont oude run? → Wacht 5 sec en run opnieuw
 - Geen output? → Check `gh auth status`
 - Te veel logs? → Check `/tmp/ci-failure-*.log`
+</troubleshooting>

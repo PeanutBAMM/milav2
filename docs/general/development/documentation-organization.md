@@ -1,6 +1,6 @@
 # Documentation Organization Guide
 
-## Overview
+<overview>
 All project documentation is automatically organized using the `organize-docs.js` script. This ensures consistent structure and easy navigation.
 
 ## How It Works
@@ -85,3 +85,4 @@ Check if it's:
 - In an excluded directory (node_modules, .git, etc.)
 - An excluded file (CLAUDE.md, README.md)
 - Already in the correct location
+</overview>

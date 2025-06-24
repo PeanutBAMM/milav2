@@ -5,7 +5,7 @@ Agents zijn krachtige tools die Claude kan gebruiken om taken parallel uit te vo
 
 ⚠️ **Performance Update**: Agents zijn 300-500x langzamer dan directe bash commands. Gebruik ze ALLEEN voor echt complexe parallelle taken.
 
-📚 **See also**: [System Info](../system-info.md) voor complete performance settings
+📚 **See also**: [System Info](./system-info.md) voor complete performance settings
 
 ## Quick Reference Table
 
@@ -13,11 +13,11 @@ Agents zijn krachtige tools die Claude kan gebruiken om taken parallel uit te vo
 |-----------|---------------|------------------|--------------|
 | File Count | ✅ Yes | `"Count .tsx files in src/"` | [Safe Examples](./safe-agent-tasks-examples.md#1-codebase-analysis-tasks) |
 | Pattern Search | ✅ Yes | `"Find all useState hooks"` | [Code Quality](./safe-agent-tasks-examples.md#3-code-quality-checks) |
-| Config Read | ✅ Yes | `"Read package.json scripts"` | [package.json](../../mila/package.json) |
-| Directory List | ✅ Yes | `"List folders in features/"` | [Architecture](../07-architecture/) |
+| Config Read | ✅ Yes | `"Read package.json scripts"` | [package.json](../../../mila/package.json) |
+| Directory List | ✅ Yes | `"List folders in features/"` | [Architecture](../../projects/mila/architecture/) |
 | Complex Analysis | ❌ No | `"Analyze component dependencies"` | Use normal tools |
-| File Write | ❌ No | `"Update all imports"` | [CI/CD Guide](../01-getting-started/ci-cd-setup-guide.md) |
-| Git Operations | ❌ No | `"Commit changes"` | [Git Workflow](../02-development/) |
+| File Write | ❌ No | `"Update all imports"` | [CI/CD Guide](../ci-cd/ci-cd-setup-guide.md) |
+| Git Operations | ❌ No | `"Commit changes"` | [Git Workflow](./git-workflow.md) |
 
 📚 **For detailed argument syntax**: See [Agent Argument Reference](./agent-argument-reference.md)
 

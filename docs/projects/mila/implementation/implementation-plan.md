@@ -1,14 +1,19 @@
 # Implementation Plan - Mila Shopping List App
 
-## Current State Analysis
+
+<current-state>
+This section covers current state.
 
 Based on the research documents:
 - **Tech Stack**: Expo SDK 51, Supabase, NativeWind v2, Zustand + React Query
 - **Design System**: Bolt Food style with green primary color (#34D186)
 - **Architecture**: Feature-based folders, offline-first approach
 - **Focus**: Stability over features, incremental development
+</current-state>
 
-## Implementation Strategy
+<implementation>
+This section covers implementation.
+
 
 ### Phase 1: Foundation Setup (Today)
 
@@ -66,13 +71,19 @@ Based on the research documents:
 2. **Test incrementally** - Both platforms after each feature
 3. **Follow Bolt design** - Consistent UI from start
 4. **Document issues** - Update troubleshooting.md as we go
+</implementation>
 
+<tech-decisions>
 ## Key Technical Decisions
 
+
+<why-expo-sdk-51-not-52>
 ### Why Expo SDK 51 (not 52+)
 - SDK 52 has experimental features (React Server Components)
 - SDK 51 is battle-tested (May 2024 release)
 - Proven stability with React Native 0.74.x
+
+</why-expo-sdk-51-not-52>
 
 ### Why Supabase over Firebase
 - MCP tool available for automation
@@ -85,8 +96,11 @@ Based on the research documents:
 - AsyncStorage + SecureStore sufficient
 - Simpler development build process
 - Less potential for platform issues
+</tech-decisions>
 
-## Development Checkpoints
+<development>
+This section covers development.
+
 
 ### Daily Verification
 ```bash
@@ -111,8 +125,11 @@ npm run lint
 - [ ] Loading states visible
 - [ ] Error states user-friendly
 - [ ] Performance < 300ms interactions
+</development>
 
-## Risk Mitigation
+<risk-mitigation>
+This section covers risk mitigation.
+
 
 ### Platform Parity
 - Test EVERY feature on both platforms
@@ -124,9 +141,13 @@ npm run lint
 - Lock exact versions in package.json
 - Document every dependency choice
 - Rollback immediately if issues arise
+</risk-mitigation>
 
-## Success Criteria
+<success-criteria>
+This section covers success criteria.
 
+
+<week-1-goals>
 ### Week 1 Goals
 - ✓ Research completed
 - [ ] Working auth flow on both platforms
@@ -134,13 +155,17 @@ npm run lint
 - [ ] Supabase integration verified
 - [ ] Development builds working
 
+</week-1-goals>
+
 ### Technical Metrics
 - App startup < 2 seconds
 - Zero TypeScript errors
 - Zero console warnings
 - Both platforms building successfully
+</success-criteria>
 
-## Next Steps
+<next-steps>
+This section covers next steps.
 
 1. **Initialize Expo project with SDK 51**
 2. **Setup TypeScript and linting**
@@ -149,3 +174,4 @@ npm run lint
 5. **Create auth screens with Bolt styling**
 
 Ready to begin implementation following this structured approach.
+</next-steps>

@@ -1,8 +1,11 @@
 # Tech Stack Research - Mila Shopping List App
 
-## Executive Summary
+
+<executive-summary>
+This section covers executive summary.
 
 Na uitgebreid onderzoek zijn dit de aanbevelingen voor een stabiele, production-ready tech stack:
+
 
 ### 🎯 Recommended Stack
 - **Expo SDK**: 51 (NIET 52 of hoger) met Development Builds
@@ -12,9 +15,13 @@ Na uitgebreid onderzoek zijn dit de aanbevelingen voor een stabiele, production-
 - **Styling**: NativeWind v2
 - **Storage**: SecureStore + AsyncStorage (geen MMKV)
 - **Development**: expo-dev-client voor development builds
+</executive-summary>
 
+<expo-analysis>
 ## 1. Expo SDK Version Analysis
 
+
+<why-sdk-51>
 ### Waarom Expo SDK 51?
 - **Released**: Mei 2024 (1+ jaar production-tested)
 - **React Native**: 0.74 (stabiel en mature)
@@ -22,11 +29,16 @@ Na uitgebreid onderzoek zijn dit de aanbevelingen voor een stabiele, production-
 - **iOS 18 SDK**: Voldoet aan Apple's requirements
 - **Stability**: Bewezen track record zonder major issues
 
+</why-sdk-51>
+
+<why-not-sdk-52>
 ### Waarom NIET SDK 52+?
 - SDK 52 bevat experimentele features (React Server Components)
 - New Architecture is default (compatibility risico's)
 - SDK 49/50 zijn End of Life (geen security updates meer)
 - SDK 53 te nieuw (April 2025 release)
+
+</why-not-sdk-52>
 
 ### Exact Version Lock
 ```json
@@ -37,8 +49,11 @@ Na uitgebreid onderzoek zijn dit de aanbevelingen voor een stabiele, production-
   "@types/react": "~18.2.79"
 }
 ```
+</expo-analysis>
 
-## 2. Backend Comparison: Firebase vs Supabase
+<backend-comparison>
+This section covers backend comparison.
+
 
 ### 🏆 Winner: Supabase (voor deze use case)
 
@@ -66,8 +81,11 @@ Na uitgebreid onderzoek zijn dit de aanbevelingen voor een stabiele, production-
 ### Cost Analysis (100 gezinnen, 1000 lijsten/maand)
 - **Supabase Free Tier**: 500MB database, 2GB bandwidth
 - **Firebase**: ~$0-10/maand maar kan snel oplopen
+</backend-comparison>
 
-## 3. Authentication Architecture
+<architecture>
+This section covers architecture.
+
 
 ### Recommended Auth Flow
 
@@ -120,8 +138,11 @@ class AuthService {
 3. **Session Management**: 30 minuten timeout
 4. **Multi-device**: Track active sessions
 5. **Deep Linking**: Voor password reset
+</architecture>
 
+<4-storage-strategy>
 ## 4. Storage Strategy
+
 
 ### Storage Strategy (Zonder MMKV)
 
@@ -166,8 +187,11 @@ class StorageManager {
   // Supabase handles real-time sync
 }
 ```
+</4-storage-strategy>
 
+<dependencies>
 ## 5. Complete Dependency List
+
 
 ### Core Dependencies
 ```json
@@ -258,8 +282,11 @@ npx expo run:android
   }
 }
 ```
+</dependencies>
 
-## 6. Architecture Patterns
+<architecture>
+This section covers architecture.
+
 
 ### State Management Architecture
 ```typescript
@@ -303,8 +330,11 @@ src/
 │   └── analytics/
 └── types/            # TypeScript definitions
 ```
+</architecture>
 
-## 7. Performance Optimizations
+<performance>
+This section covers performance.
+
 
 ### List Performance
 ```javascript
@@ -351,8 +381,11 @@ import { Image } from 'expo-image';
   transition={200}
 />
 ```
+</performance>
 
-## 8. Known Issues & Workarounds
+<known-issues>
+This section covers known issues.
+
 
 ### Issue 1: Supabase met Development Builds
 **Problem**: Geen native dependencies, werkt overal
@@ -384,9 +417,13 @@ npx expo start --dev-client
 
 # Scan QR with your dev build app
 ```
+</known-issues>
 
-## 9. Testing Strategy
+<testing>
+This section covers testing.
 
+
+<testing-e2e>
 ### Unit Testing
 ```json
 {
@@ -395,6 +432,7 @@ npx expo start --dev-client
   "@testing-library/jest-native": "^5.4.3"
 }
 ```
+</testing-e2e>
 
 ### E2E Testing
 ```bash
@@ -413,8 +451,11 @@ appId: com.yourcompany.mila
 - tapOn: "Login"
 - assertVisible: "Shopping Lists"
 ```
+</testing>
 
-## 10. Deployment Preparation
+<deployment>
+This section covers deployment.
+
 
 ### Build Configuration
 ```json
@@ -452,8 +493,11 @@ EXPO_PUBLIC_SUPABASE_ANON_KEY=xxx
 const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
 ```
+</deployment>
 
-## Development Workflow
+<development>
+This section covers development.
+
 
 ### Daily Development
 ```bash
@@ -475,8 +519,11 @@ gh repo create mila-app --private
 gh issue create --title "Setup Supabase"
 gh pr create --title "Add auth flow"
 ```
+</development>
 
-## Testing Roadmap
+<testing>
+This section covers testing.
+
 
 ### Week 3: Jest Setup
 - Unit tests voor business logic
@@ -487,8 +534,10 @@ gh pr create --title "Add auth flow"
 - User flow testing
 - Cross-platform test scenarios
 - CI/CD integration
+</testing>
 
-## Conclusion
+<conclusion>
+This section covers conclusion.
 
 Deze tech stack biedt de beste balans tussen:
 - **Stabiliteit**: Alleen proven, stabiele versies
@@ -498,3 +547,4 @@ Deze tech stack biedt de beste balans tussen:
 - **Budget**: Supabase free tier zeer genereus
 
 Start met deze exact versies en upgrade pas na 6 maanden productie-ervaring.
+</conclusion>

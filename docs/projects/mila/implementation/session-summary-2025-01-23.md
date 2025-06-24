@@ -1,6 +1,9 @@
 # Session Summary - 23 Januari 2025
 
+
+<current-status>
 ## 🚀 Waar we zijn gebleven
+
 
 ### ✅ Wat is af:
 1. **CI/CD volledig werkend**
@@ -39,8 +42,11 @@ gh pr merge 1       # Merge PR
 npx expo run:ios    # iOS dev build
 npx expo run:android # Android dev build
 ```
+</current-status>
 
-## 💡 Performance Optimalisatie Ideeën
+<performance>
+This section covers performance.
+
 
 ### 1. **MCP Documentation Cache**
 ```javascript
@@ -87,17 +93,21 @@ Voor user memory:
   "lastCIStatus": "success"
 }
 ```
+</performance>
 
+<next-focus>
 ## 🎯 Focus voor morgen:
 1. Merge PR #1 (of laat open voor demo)
 2. Implementeer biometric auth met expo-local-authentication
 3. Test op beide platforms
 4. Begin met family management screens
+</next-focus>
 
-## 📝 Notes:
+<notes>
 - Performance-first approach werkt goed (bash > agents)
 - PR workflow nu established - alle features via PRs
 - CI catches issues vroeg (zoals console.log detectie)
 
 ---
 Ready to continue tomorrow! 🚀
+</notes>

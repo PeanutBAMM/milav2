@@ -1,46 +1,91 @@
 # Mila Project Documentation
 
-Documentation specific to the Mila family shopping list application.
+Family shopping list app with expense tracking built with React Native and Expo.
 
-## 📋 Implementation & Planning
+<project-info>
+## Project Overview
+- **Type**: React Native (Expo SDK 51)
+- **Status**: Active Development
+- **Current Sprint**: Week 1 - Authentication
+- **Primary Goal**: Stable, real-time family collaboration app
+</project-info>
 
-- [Project Plan](./implementation/projectplan.md) - Complete project plan and roadmap
-- [Implementation Plan](./implementation/implementation-plan.md) - Detailed implementation strategy
-- [Tech Stack Research](./implementation/tech-stack-research.md) - Technology choices and rationale
-- [EAS Secrets Setup](./implementation/eas-secrets-setup.md) - Expo Application Services configuration
-- [PR Workflow](./implementation/pr-workflow.md) - Pull request workflow documentation
-- [Session Summary 2025-01-23](./implementation/session-summary-2025-01-23.md) - Development session notes
+<quick-links>
+## Essential Links
+- [Project CLAUDE.md](../../../mila/CLAUDE.md) - Project-specific guidelines
+- [Project Plan](./implementation/projectplan.md) - Complete roadmap and milestones
+- [Tech Stack](./implementation/tech-stack-research.md) - Technology decisions
+</quick-links>
 
-## 🏗️ Architecture & Design
+<architecture>
+- [Design Reference](./architecture/design-reference.md) - Bolt Food style guide
+</architecture>
 
-- [Design Reference](./architecture/design-reference.md) - Bolt Food style guide and UI patterns
+<implementation>
+- [Project Plan](./implementation/projectplan.md) - Detailed 4-week roadmap
+- [Tech Stack Research](./implementation/tech-stack-research.md) - Version analysis and decisions
+- [Implementation Plan](./implementation/implementation-plan.md) - Initial implementation strategy
+- [EAS Secrets Setup](./implementation/eas-secrets-setup.md) - Environment configuration
+- [PR Workflow](./implementation/pr-workflow.md) - Code review process
+- [Session Summary](./implementation/session-summary-2025-01-23.md) - Latest development updates
+</implementation>
 
-## 🔌 API & Database
+<features>
+## Feature Documentation
+Features will be documented as they are implemented.
+</features>
 
-*Coming soon: Database schema, API endpoints, Supabase configuration*
+<api>
+API documentation will be added as services are created.
+</api>
 
-## ✨ Features & Components
+<scripts>
+Located in [`mila/scripts/`](../../../mila/scripts/):
+- [`pre-install-check.js`](../../../mila/scripts/pre-install-check.js) - Enforces exact versions (no ^ or ~)
+- [`check-tech-stack-compliance.js`](../../../mila/scripts/check-tech-stack-compliance.js) - Validates dependencies
+- [`create-icon.js`](../../../mila/scripts/create-icon.js) - Generate app icons
+- [`create-splash-jimp.js`](../../../mila/scripts/create-splash-jimp.js) - Generate splash screens
+</scripts>
 
-*Coming soon: Feature specifications, component documentation*
+<commands>
+```bash
+# Daily development
+npm start           # Start Expo
+npm run ios        # iOS simulator
+npm run android    # Android emulator
+
+# Quality checks
+npm run typecheck  # TypeScript validation
+npm run lint       # ESLint checks
+npm run push       # Push with CI monitoring
+
+# Building
+npx expo run:ios     # Local iOS build
+npx expo run:android # Local Android build
+eas build            # Cloud builds
+```
+</commands>
+
+<status>
+### Completed ✅
+- Project setup with Expo SDK 51
+- Navigation structure
+- Authentication screens
+- Supabase integration
+- CI/CD pipeline
+
+### In Progress 🚧
+- Auth context implementation
+- Protected routes
+- Family creation flow
+
+### Upcoming 📋
+- Shopping list CRUD
+- Real-time sync
+- Expense tracking
+- Performance optimization
+</status>
 
 ---
 
-## About Mila
-
-Mila is a React Native application designed to help families manage their shopping lists and track expenses together. Built with:
-
-- **Framework**: React Native with Expo SDK 51
-- **Backend**: Supabase (PostgreSQL, Auth, Realtime)
-- **Styling**: NativeWind v2 (Tailwind for React Native)
-- **State**: Zustand + React Query
-- **Navigation**: React Navigation v6
-
-## Quick Links
-
-- [GitHub Repository](https://github.com/PeanutBAMM/milav2)
-- [General Documentation](../../general/)
-- [CI/CD Setup](../../general/ci-cd/)
-
----
-
-← [Back to Projects](../) | [Back to Documentation Hub](../../)
+**Navigation**: [Back to General](../../general/README.md) | [Mila Project](../../../mila/)

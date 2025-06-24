@@ -18,7 +18,8 @@ We use a feature branch workflow:
 6. CI checks run automatically
 7. Review & merge
 
-## Commands
+<commands>
+This section covers commands.
 
 ```bash
 # Create feature branch
@@ -38,3 +39,4 @@ gh pr create --title "Title" --body "Description"
 - Expo Doctor
 - Security audit
 - Version compliance
+</commands>

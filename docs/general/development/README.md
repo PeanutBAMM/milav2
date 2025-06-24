@@ -2,7 +2,9 @@
 
 Best practices and guidelines for development that apply across all projects.
 
-## Available Guides
+
+<available-guides>
+This section covers available guides.
 
 - [Agent Argument Reference](./agent-argument-reference.md) - Complete reference for agent tool usage
 - [Agent Usage Guidelines](./agent-usage-guidelines.md) - When and how to use agents effectively
@@ -10,8 +12,11 @@ Best practices and guidelines for development that apply across all projects.
 - [System Info](./system-info.md) - Claude system configuration and performance settings
 - [Git Workflow](./git-workflow.md) - Git best practices and workflow
 - [Documentation Organization](./documentation-organization.md) - How documentation is organized
+</available-guides>
 
-## Key Principles
+<key-principles>
+This section covers key principles.
+
 
 ### Performance First
 1. Use bash/shell commands for simple operations
@@ -31,3 +36,4 @@ Best practices and guidelines for development that apply across all projects.
 ---
 
 ← [Back to Documentation Hub](../../)
+</key-principles>

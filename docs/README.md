@@ -43,8 +43,10 @@ This documentation structure ensures:
 - **Scalability**: Easy to add new projects without mixing concerns
 - **Maintainability**: Each project manages its own documentation
 
-## Quick Links
+<quick-links>
+This section covers quick links.
 
 - [CI/CD Setup Guide](./general/ci-cd/ci-cd-setup-guide.md)
 - [Agent Usage Guidelines](./general/development/agent-usage-guidelines.md)
 - [Mila Project Plan](./projects/mila/implementation/projectplan.md)
+</quick-links>

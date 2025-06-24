@@ -2,14 +2,19 @@
 
 Deze guide helpt je stap-voor-stap om dezelfde CI/CD pipeline op te zetten als in het Mila project.
 
-## Prerequisites
+
+<prerequisites>
+This section covers prerequisites.
 
 - GitHub account
 - GitHub CLI geïnstalleerd (`gh`)
 - Node.js 18+
 - Git repository
+</prerequisites>
 
-## Stap 1: GitHub Repository Setup
+<setup>
+This section covers setup.
+
 
 ### 1.1 Initialiseer Git (als nog niet gedaan)
 ```bash
@@ -39,8 +44,11 @@ gh repo create PROJECT_NAME --private --source . --remote origin --push
 
 # Of manually via github.com
 ```
+</setup>
 
-## Stap 2: Basic CI Workflow
+<workflow>
+This section covers workflow.
+
 
 ### 2.1 Maak workflow directories
 ```bash
@@ -89,8 +97,11 @@ jobs:
       working-directory: mila
 EOF
 ```
+</workflow>
 
-## Stap 3: Enhanced Compliance Checks
+<compliance-checks>
+This section covers compliance checks.
+
 
 ### 3.1 Voeg extra checks toe aan workflow
 ```yaml
@@ -168,8 +179,11 @@ Voeg toe aan package.json scripts:
 ```json
 "check-compliance": "node scripts/check-tech-stack-compliance.js"
 ```
+</compliance-checks>
 
-## Stap 4: Claude CI Monitoring Setup
+<setup>
+This section covers setup.
+
 
 ### 4.1 Maak CI watch script
 ```bash
@@ -236,8 +250,11 @@ Voeg toe aan package.json:
   "ci:status": "gh run list --limit 5"
 }
 ```
+</setup>
 
+<stap-5-eerste-push-test>
 ## Stap 5: Eerste Push & Test
+
 
 ### 5.1 Commit alle changes
 ```bash
@@ -257,8 +274,10 @@ gh run list --limit 5
 
 # Of ga naar: https://github.com/USERNAME/PROJECT/actions
 ```
+</stap-5-eerste-push-test>
 
-## Stap 6: Branch Protection (Optional)
+<branch-protection>
+This section covers branch protection.
 
 Als je repository public is:
 ```bash
@@ -268,8 +287,11 @@ gh api repos/USERNAME/PROJECT/branches/main/protection \
   -f 'required_status_checks[contexts][]=check' \
   -f enforce_admins=false
 ```
+</branch-protection>
 
-## Stap 7: Test de Workflow
+<workflow>
+This section covers workflow.
+
 
 ### 7.1 Test met opzettelijke fout
 ```bash
@@ -288,8 +310,11 @@ Het script zal:
 - Wachten tot CI klaar is
 - ✅ Tonen bij succes
 - ❌ Error logs tonen bij failure
+</workflow>
 
-## Troubleshooting
+<troubleshooting>
+This section covers troubleshooting.
+
 
 ### GitHub CLI niet geauthenticeerd?
 ```bash
@@ -303,15 +328,19 @@ Pas `working-directory` aan in workflows naar jouw project structuur.
 ```bash
 chmod +x scripts/*.sh
 ```
+</troubleshooting>
 
-## Next Steps
+<next-steps>
+This section covers next steps.
 
 1. **Customize checks** - Voeg project-specifieke checks toe
 2. **Add badges** - Voeg CI status badge toe aan README
 3. **Setup notifications** - GitHub notifications voor failures
 4. **Document standards** - Maak .github/CI.md voor team
+</next-steps>
 
-## Claude Integration
+<claude-integration>
+This section covers claude integration.
 
 Voor Claude gebruikers: vanaf nu kan Claude bij elke push automatisch:
 1. CI status monitoren
@@ -331,3 +360,4 @@ Gebruik gewoon `npm run push` in plaats van `git push`!
 - Console.log detection
 - Custom compliance checks
 - Automatic monitoring
+</claude-integration>

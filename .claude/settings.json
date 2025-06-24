@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "find",
-      "cd"
+      "cd",
+      "find docs"
     ],
     "deny": []
   }

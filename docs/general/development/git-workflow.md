@@ -1,6 +1,9 @@
 # Git Workflow Guide
 
-## Branch Strategy
+
+<branch-strategy>
+This section covers branch strategy.
+
 
 ### Branch Types
 - `main` - Production-ready code
@@ -14,8 +17,10 @@ git checkout main
 git pull origin main
 git checkout -b feature/shopping-lists
 ```
+</branch-strategy>
 
-## Commit Messages
+<commit-messages>
+This section covers commit messages.
 
 Use semantic commit messages:
 - `feat:` - New feature
@@ -32,8 +37,11 @@ git commit -m "feat: Add shopping list CRUD operations"
 git commit -m "fix: Resolve auth token refresh issue"
 git commit -m "docs: Update API documentation"
 ```
+</commit-messages>
 
-## Pull Request Workflow
+<workflow>
+This section covers workflow.
+
 
 ### Option 1: Via GitHub (Recommended)
 1. Push your branch: `npm run push`
@@ -53,18 +61,23 @@ This will:
 - Fill out the PR template completely
 - Wait for CI checks to pass
 - Request review when ready
+</workflow>
 
-## Available Commands
+<commands>
+This section covers commands.
 
 ```bash
 npm run push      # Push + monitor CI
 npm run pr        # Push + create PR
 npm run ci:status # Check recent CI runs
 ```
+</commands>
 
-## Tips
+<tips>
+This section covers tips.
 
 1. **Don't force push** unless absolutely necessary
 2. **Keep commits atomic** - one logical change per commit
 3. **Write descriptive commit messages** - your future self will thank you
 4. **Review your own PR** before requesting reviews from others
+</tips>
