@@ -1,13 +1,13 @@
 # PR Workflow Documentation
 
-## Branch Strategy
+<branch-strategy>
 
 We use a feature branch workflow:
 
 1. **Main branch**: Production-ready code
 2. **Feature branches**: `feature/feature-name`
 3. **Bugfix branches**: `fix/bug-description`
-
+</branch-strategy>
 ## Workflow Steps
 
 1. Create feature branch from main
@@ -40,3 +40,4 @@ gh pr create --title "Title" --body "Description"
 - Security audit
 - Version compliance
 </commands>
+</branch-strategy>

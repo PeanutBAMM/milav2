@@ -1,5 +1,6 @@
 # Mila Project - Development Guidelines
 
+<project-context>
 ## Project Context
 Building a React Native family shopping list app with expense tracking. Focus on stability, real-time sync, and family collaboration.
 
@@ -126,6 +127,7 @@ eas build --platform android  # Android production
 - **Android build fail**: Check gradle version compatibility
 - **Type errors**: Run `npm run typecheck` before push
 
+<quick-links>
 ## Quick Links
 
 ### Essential Docs
@@ -136,4 +138,6 @@ eas build --platform android  # Android production
 
 ---
 
-Remember: **Stability > Features**. A working app with 3 features is better than a crashing app with 10 features.
+Remember: **Stability > Features**. A working app with 3 features is better than a crashing app </project-context>
+with</quick-links>
+ 10 features.

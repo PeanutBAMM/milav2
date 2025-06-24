@@ -253,6 +253,7 @@ Voeg toe aan package.json:
 </setup>
 
 <stap-5-eerste-push-test>
+<stap-5-eerste-push-test>
 ## Stap 5: Eerste Push & Test
 
 
@@ -276,6 +277,7 @@ gh run list --limit 5
 ```
 </stap-5-eerste-push-test>
 
+</stap-5-eerste-push-test>
 <branch-protection>
 This section covers branch protection.
 
@@ -361,3 +363,4 @@ Gebruik gewoon `npm run push` in plaats van `git push`!
 - Custom compliance checks
 - Automatic monitoring
 </claude-integration>
+</stap-5-eerste-push-test>

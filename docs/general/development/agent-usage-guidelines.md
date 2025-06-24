@@ -9,8 +9,6 @@ Agents zijn krachtige tools die Claude kan gebruiken om taken parallel uit te vo
 </overview>
 
 <quick-reference>
-## Quick Reference Table
-
 | Task Type | Agent Suitable | Argument Example | Related Docs |
 |-----------|---------------|------------------|--------------|
 | File Count | ✅ Yes | `"Count .tsx files in src/"` | [Safe Examples](./safe-agent-tasks-examples.md#1-codebase-analysis-tasks) |
@@ -24,7 +22,6 @@ Agents zijn krachtige tools die Claude kan gebruiken om taken parallel uit te vo
 📚 **For detailed argument syntax**: See [Agent Argument Reference](./agent-argument-reference.md)
 </quick-reference>
 
-<when-to-use>
 ## Wanneer Agents Gebruiken
 
 ### ✅ Ideaal voor Agents
@@ -63,9 +60,7 @@ Agent taak: Grep door hele codebase voor TODO/FIXME patterns
 3. **Git operations** - Kunnen conflicten veroorzaken
 4. **Database migrations** - Require careful sequencing
 5. **Build configurations** - Te complex voor parallel werk
-</when-to-use>
 
-<security-rules>
 ## Veiligheidsregels
 
 ### 1. Read-First Policy
@@ -127,9 +122,8 @@ Agent: "Map alle gebruik van oude Button component"
 → Dan pas manual refactoring
 ```
 
-## Best Practices
-
-### 1. Batch Similar Tasks
+<best-practices>
+1. Batch Similar Tasks
 ```
 GOED:
 Agents: "Check alle .tsx files voor [pattern1, pattern2, pattern3]"
@@ -140,7 +134,7 @@ Agent 2: "Check voor pattern2"
 Agent 3: "Check voor pattern3"
 ```
 
-### 2. Clear Success Criteria
+2. Clear Success Criteria
 ```
 GOED:
 "Find alle files met > 500 lines"
@@ -151,13 +145,15 @@ VAAG:
 "Find problematic files"
 ```
 
-### 3. Progress Reporting
+3. Progress Reporting
 Agents moeten rapporteren:
 - Hoeveel files processed
 - Findings count
 - Any errors encountered
+</best-practices>
 
-## Integration met CI/CD
+<ci-cd-integration>
+Integration met CI/CD
 
 Agents kunnen helpen bij CI failure analysis:
 
@@ -169,17 +165,19 @@ Agent 3: "Find recent changes in affected modules"
 
 # Snellere root cause analysis!
 ```
+</ci-cd-integration>
 
-## Monitoring & Rollback
+<monitoring-rollback>
+Monitoring & Rollback
 
-### Voor grote agent operations:
+Voor grote agent operations:
 1. **Git commit first** - Safety checkpoint
 2. **Run agents** - Execute changes
 3. **Review diff** - `git diff` om changes te zien
 4. **Test** - Run relevante tests
 5. **Commit of rollback** - Based op resultaten
 
-### Rollback commands:
+Rollback commands:
 ```bash
 # Undo alle changes sinds laatste commit
 git restore .
@@ -218,20 +216,22 @@ Do:
   Agent: Run verification
 While: Issues found
 ```
+</monitoring-rollback>
 
-## Troubleshooting
+<troubleshooting>
+Troubleshooting
 
-### Agent fails halfway?
+**Agent fails halfway?**
 - Check agent output voor error details
 - Rollback partial changes
 - Retry met smaller scope
 
-### Too many file changes?
+**Too many file changes?**
 - Break into smaller agent tasks
 - Use more specific file patterns
 - Add intermediate review steps
 
-### Performance issues?
+**Performance issues?**
 - Reduce parallel agent count
 - Add file type filters
 - Exclude node_modules, dist, etc.
@@ -239,3 +239,4 @@ While: Issues found
 ---
 
 💡 **Remember**: Agents zijn tools voor efficiency, niet vervanging voor careful thinking. Use them wisely!
+</troubleshooting>

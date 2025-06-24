@@ -1,6 +1,8 @@
+<summary>
 ## Summary
 <!-- Provide a brief description of the changes -->
 
+</summary>
 ## Type of Change
 - [ ] 🐛 Bug fix (non-breaking change which fixes an issue)
 - [ ] ✨ New feature (non-breaking change which adds functionality)
@@ -30,3 +32,4 @@
 
 ## Related Issues
 <!-- Link any related issues here using #issue-number -->
+</summary>

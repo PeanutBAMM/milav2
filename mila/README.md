@@ -1,7 +1,10 @@
 # Mila - Family Shopping List App
 
+<overview>
 Een React Native shopping list app voor families met expense tracking, gebouwd met Expo SDK 51.
+</overview>
 
+<tech-stack>
 ## Tech Stack
 
 - **Expo SDK**: 51.0.0 (stabiele versie)
@@ -14,6 +17,7 @@ Een React Native shopping list app voor families met expense tracking, gebouwd m
 - **CI/CD**: ✅ GitHub Actions (automatic checks on every push)
 - **Branch Strategy**: Feature branches with PR workflow
 
+</tech-stack>
 ## Ontwikkeling
 
 ### Prerequisites
@@ -123,3 +127,5 @@ All project documentation is organized in the [`docs/`](./docs) directory:
 ## Development Guidelines
 
 Zie `/CLAUDE.md` voor development regels en workflow.
+
+</tech-stack>

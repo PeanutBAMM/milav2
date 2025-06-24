@@ -1,7 +1,6 @@
 # Session Summary - 23 Januari 2025
 
 
-<current-status>
 ### ✅ Wat is af:
 1. **CI/CD volledig werkend**
    - GitHub Actions draait op elke push/PR
@@ -39,7 +38,6 @@ gh pr merge 1       # Merge PR
 npx expo run:ios    # iOS dev build
 npx expo run:android # Android dev build
 ```
-</current-status>
 
 <performance>
 This section covers performance.

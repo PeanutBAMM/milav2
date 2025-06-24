@@ -1,8 +1,10 @@
 # Documentation Hub
 
+<overview>
 Welcome to the centralized documentation for all projects. Documentation is organized into two main sections:
+</overview>
 
-## 📚 General Documentation
+<general-documentation>
 Reusable documentation that applies across all projects:
 
 ### [CI/CD & DevOps](./general/ci-cd/)
@@ -20,7 +22,7 @@ Reusable documentation that applies across all projects:
 - Environment setup
 - Tool installation
 - Initial configuration
-
+</general-documentation>
 ## 🚀 Project Documentation
 
 ### [Mila - Family Shopping List](./projects/mila/)
@@ -50,3 +52,4 @@ This section covers quick links.
 - [Agent Usage Guidelines](./general/development/agent-usage-guidelines.md)
 - [Mila Project Plan](./projects/mila/implementation/projectplan.md)
 </quick-links>
+</general-documentation>
