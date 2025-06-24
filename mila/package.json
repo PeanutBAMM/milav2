@@ -15,6 +15,7 @@
     "organize-docs": "node docs/scripts/organize-docs.js",
     "check-compliance": "node scripts/check-tech-stack-compliance.js",
     "push": "git push && bash ../scripts/ci-watch.sh",
+    "pr": "git push -u origin HEAD && gh pr create",
     "ci:watch": "bash ../scripts/ci-watch.sh",
     "ci:status": "gh run list --limit 5"
   },
