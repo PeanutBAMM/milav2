@@ -89,6 +89,28 @@ npm run lint
   - Runs on: Pre-commit hook
   - Categories: Based on project needs
 
+- **todo-manager** - Unified todo management system
+  - Location: `scripts/todo-manager.js`
+  - Central system voor alle todo operaties
+  - Commands:
+    - `score <story>` - Score een nieuwe user story
+    - `sync` - Sync todos naar todo-tracker.md
+    - `display` - Display formatted todo table (met auto-sync)
+    - `read` - Read current todo-tracker.md
+  - Features:
+    - Automatische P/S/DX/UX score berekening
+    - Prioriteit segmentatie (TOP/MEDIUM/LAGE)
+    - Perfect uitgelijnde markdown tabellen
+    - Area categorisatie
+    - Geïntegreerde sync & display
+  - Usage: `node scripts/todo-manager.js <command>`
+
+- **Backwards Compatible Wrappers**:
+  - `todo-scoring.js` → Roept `todo-manager.js score` aan
+  - `sync-todos-hook.js` → Roept `todo-manager.js sync` aan
+  - `display-todos.js` → Roept `todo-manager.js display` aan
+  - **Deze blijven werken** voor bestaande integraties
+
 ### CI/CD Scripts
 - `ci-watch.sh` - Monitor CI after push
   - Location: `scripts/ci-watch.sh`
@@ -109,6 +131,54 @@ Each project has its own scripts in `{project}/scripts/`:
 | [Mila](./mila/CLAUDE.md) | React Native (Expo) | Active | [Mila Docs](./docs/projects/mila/README.md) |
 | Project2 | TBD | Planning | Coming soon |
 
+## Todo Management
+
+### Standaard Todo Weergave - VERPLICHT FORMAT MET AUTO-SYNC
+
+**BELANGRIJK**: Bij ELKE `TodoRead` actie MOET je:
+
+1. **NOOIT** de raw JSON array tonen
+2. **ALTIJD** het onderstaande tabel format gebruiken
+3. **ALTIJD** sorteren op score binnen elke sectie (hoog → laag)
+4. **ALTIJD** syncen naar todo-tracker.md
+5. **DIRECT** de tabellen genereren zonder tussenstappen te tonen
+
+**VERPLICHTE WORKFLOW bij TodoRead:**
+```bash
+# Gebruik todo-manager display voor ALLES in één keer:
+# 1. Leest todos
+# 2. Sorteert op score
+# 3. Synct naar todo-tracker.md
+# 4. Geeft perfect geformatteerde output
+
+echo '[todos-json]' | node scripts/todo-manager.js display
+```
+
+**Dit garandeert:**
+- ✅ Chat weergave = todo-tracker.md (ALTIJD)
+- ✅ Automatische sortering op score
+- ✅ Geen manual sync meer nodig
+- ✅ Consistentie overal
+
+**Output Format (EXACT zo weergeven):**
+
+## 🔥 TOP PRIORITEIT (Score > 7.0)
+
+| Task                                            |  P  |  S  | DX  | UX  |  Score  | Area            | Status  |
+| :---------------------------------------------- | :-: | :-: | :-: | :-: | :-----: | :-------------- | :-----: |
+| **Self-Healing RAG System**                     |  8  | 10  | 10  |  4  | **8.8** | 🔧 Automation   |    ⏳    |
+| **Sentry MCP koppelen**                         |  7  |  9  |  8  |  6  | **7.9** | 📊 Monitoring   |    ⏳    |
+| **Unit Tests robuuster**                        |  6  |  9  |  7  |  8  | **7.6** | 🏆 Quality      |    ⏳    |
+
+(etc. voor MEDIUM, LAGE, VOLTOOID secties)
+
+### Todo Synchronisatie Workflow
+1. Bij `TodoWrite` → automatisch `todo-manager.js sync` runnen
+2. Bij `TodoRead` → gebruik `todo-manager.js display` (doet alles)
+3. Dit houdt `todo-tracker.md` altijd up-to-date
+4. Scoring gebeurt automatisch via keywords
+5. Centrale TodoManager class voor consistentie
+
 ## Quick Reference
 
 ### Most Used Commands
@@ -124,6 +194,12 @@ npm run verify-versions
 
 # View CI status
 npm run ci:status
+
+# Todo management commands
+node scripts/todo-manager.js score "Your story here"
+node scripts/todo-manager.js sync
+node scripts/todo-manager.js display
+node scripts/todo-manager.js read
 ```
 
 ## Example Scenarios
