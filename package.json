@@ -1,0 +1,23 @@
+{
+  "name": "apex-minds-apps",
+  "version": "1.0.0",
+  "description": "Apex Minds AI Apps Workspace",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci-heal": "jest scripts/tests/ci-self-heal.test.js",
+    "branch-protection:setup": "node scripts/setup-branch-protection.js",
+    "branch-protection:remove": "node scripts/setup-branch-protection.js --remove"
+  },
+  "devDependencies": {
+    "jest": "29.5.0",
+    "babel-jest": "29.5.0",
+    "@babel/core": "7.24.0",
+    "@babel/preset-env": "7.24.0"
+  },
+  "workspaces": [
+    "mila"
+  ]
+}
