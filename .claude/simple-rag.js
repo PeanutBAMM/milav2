@@ -26,11 +26,17 @@ class SimpleDocsRAG {
     // Ensure cache directory exists
     await fs.mkdir(this.cacheDir, { recursive: true });
     
+    // Always try to load conversation memory first
+    await this.loadConversationMemory();
+    
     // Try to load existing index
     const cached = await this.loadCachedIndex();
     if (cached && !await this.isIndexStale(cached)) {
       this.index = new Map(cached.index);
-      this.conversationMemory = cached.conversations || [];
+      // Don't override conversation memory from cached index if we already loaded it
+      if (this.conversationMemory.length === 0 && cached.conversations) {
+        this.conversationMemory = cached.conversations;
+      }
       console.log('✓ Loaded cached index');
       console.timeEnd('RAG Initialization');
       return;
@@ -406,6 +412,18 @@ class SimpleDocsRAG {
     }
     
     return false;
+  }
+
+  async loadConversationMemory() {
+    try {
+      const memoryPath = path.join(this.cacheDir, 'conversation-memory.json');
+      const data = await fs.readFile(memoryPath, 'utf8');
+      this.conversationMemory = JSON.parse(data);
+      console.log(`✓ Loaded ${this.conversationMemory.length} conversation(s) from memory`);
+    } catch (error) {
+      // If file doesn't exist or can't be read, start with empty memory
+      this.conversationMemory = [];
+    }
   }
 
   async saveConversationMemory() {

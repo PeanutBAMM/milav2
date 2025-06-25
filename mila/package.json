@@ -17,7 +17,11 @@
     "push": "git push && bash ../scripts/ci-watch.sh",
     "pr": "git push -u origin HEAD && gh pr create",
     "ci:watch": "bash ../scripts/ci-watch.sh",
-    "ci:status": "gh run list --limit 5"
+    "ci:status": "gh run list --limit 5",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci-heal": "jest scripts/tests/ci-self-heal.test.js"
   },
   "dependencies": {
     "@expo/vector-icons": "14.0.3",

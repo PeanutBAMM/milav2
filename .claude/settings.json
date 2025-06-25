@@ -3,7 +3,8 @@
     "allow": [
       "find",
       "cd",
-      "find docs"
+      "find docs",
+      "Bash(echo:*)"
     ],
     "deny": []
   }

@@ -5,6 +5,12 @@ on:
     types: [opened, synchronize]
     branches: [ main ]
 
+# Grant necessary permissions for PR comments
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
 jobs:
   backup-docs:
     runs-on: ubuntu-latest

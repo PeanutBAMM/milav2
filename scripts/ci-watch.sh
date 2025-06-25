@@ -101,6 +101,40 @@ else
     echo -e "\n${YELLOW}Full logs saved to: $LOG_FILE${NC}"
     echo -e "${YELLOW}View on GitHub: https://github.com/PeanutBAMM/milav2/actions/runs/$RUN_ID${NC}"
     
-    # Return error code for CI failure
-    exit 1
+    # Attempt self-healing
+    echo -e "\n${BLUE}🔧 Attempting automatic fixes...${NC}"
+    echo "================================"
+    
+    # Run self-healing script
+    if node "$(dirname "$0")/ci-self-heal.js" "$LOG_FILE"; then
+        echo -e "\n${GREEN}✅ Automatic fixes applied!${NC}"
+        echo -e "${YELLOW}Re-running CI to verify fixes...${NC}"
+        
+        # Push the fixes
+        git push
+        
+        # Start monitoring the new CI run
+        echo -e "\n${BLUE}Monitoring new CI run after fixes...${NC}"
+        exec "$0"  # Re-run this script
+    else
+        echo -e "\n${RED}❌ Could not automatically fix all issues${NC}"
+        echo -e "${YELLOW}Manual intervention required${NC}"
+        
+        # Suggest manual fixes based on error type
+        if [ ! -z "$TS_ERRORS" ]; then
+            echo -e "\n${YELLOW}TypeScript fixes needed:${NC}"
+            echo "- Check type definitions"
+            echo "- Add missing type annotations"
+            echo "- Fix type mismatches"
+        fi
+        
+        if [ ! -z "$CONSOLE_LOGS" ]; then
+            echo -e "\n${YELLOW}Console.log cleanup needed:${NC}"
+            echo "- Remove debug console.log statements"
+            echo "- Keep only console.error/warn for production"
+        fi
+        
+        # Return error code for CI failure
+        exit 1
+    fi
 fi

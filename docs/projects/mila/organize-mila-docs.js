@@ -7,7 +7,7 @@ const path = require('path');
 const MILA_PROJECT_ROOT = path.join(__dirname, '..', '..', '..', 'mila');
 const MILA_DOCS_DIR = __dirname; // This script is in /docs/projects/mila/
 const EXCLUDE_DIRS = ['node_modules', '.git', '.expo', 'android', 'ios', 'build', 'dist'];
-const EXCLUDE_FILES = ['CLAUDE.md', 'README.md', 'pull_request_template.md'];
+const EXCLUDE_FILES = ['CLAUDE.md', 'README.md', 'pull_request_template.md', 'todo-tracker.md'];
 
 // Categories for Mila project documentation
 const CATEGORIES = {
